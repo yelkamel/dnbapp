@@ -10,13 +10,15 @@ class ProfilInfo extends StatelessWidget {
     return Obx(() {
       final user = Get.find<UserController>().user;
 
-      return Row(
+      return Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(user.name.toString()),
-          Text(user.nbpost.toString()),
-          Text(user.badge.toString()),
-          Text(user.email.toString()),
+          Text(user.name.toString(),
+              style: Theme.of(context).textTheme.subtitle1),
+          Text(user.nbpost.toString(),
+              style: Theme.of(context).textTheme.subtitle2),
+          Text(user.badge.toString(),
+              style: Theme.of(context).textTheme.subtitle1),
         ],
       );
     });

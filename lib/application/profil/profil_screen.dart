@@ -1,8 +1,9 @@
+import 'package:dnbapp/application/container/dnb_card.dart';
 import 'package:dnbapp/application/profil/profil_header.dart';
 import 'package:dnbapp/application/profil/profil_picture.dart';
-import 'package:dnbapp/application/profil/profil_post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:sliver_fab/sliver_fab.dart';
 
 import 'profil_info.dart';
 import 'profil_video.dart';
@@ -13,35 +14,22 @@ class ProfilScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ProfilVideo(height: headerHeight),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: headerHeight - 50),
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).backgroundColor,
-                  borderRadius: BorderRadius.circular(80),
-                  border: Border.all(
-                    width: 2,
-                    color: Theme.of(context).dividerColor,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        ProfilPicture(),
-                        ProfilInfo(),
-                      ],
-                    ),
-                    ProfilPost()
-                  ],
-                ),
-              ),
-            ],
+    return SliverFab(
+      floatingWidget: ProfilHeader(),
+      floatingPosition: FloatingPosition(left: 40, top: -30),
+      expandedHeight: headerHeight,
+      slivers: <Widget>[
+        SliverAppBar(
+          expandedHeight: headerHeight,
+          pinned: true,
+          flexibleSpace: ProfilVideo(height: headerHeight),
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate(
+            List.generate(
+              30,
+              (int index) => ListTile(title: Text("Item $index")),
+            ),
           ),
         ),
       ],

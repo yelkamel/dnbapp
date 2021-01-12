@@ -75,4 +75,13 @@ class Database {
       rethrow;
     }
   }
+
+  Future<void> updateUser(String uid, Map<String, dynamic> data) async {
+    try {
+      await service.collection("user").doc(uid).update(data);
+    } catch (e) {
+      Get.snackbar("Database Oupsi !", e);
+      rethrow;
+    }
+  }
 }

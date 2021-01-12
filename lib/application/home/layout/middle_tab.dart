@@ -1,4 +1,4 @@
-import 'package:dnbapp/application/home/widget/world.dart';
+import 'package:dnbapp/application/world/world.dart';
 import 'package:dnbapp/application/radio/radio_container.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +18,7 @@ class _MiddleTabState extends State<MiddleTab>
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           RadioContainer(),
           DnbWorld(),

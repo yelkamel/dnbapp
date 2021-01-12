@@ -13,7 +13,7 @@ class RadioController extends GetxController {
   Future onInit() async {
     super.onInit();
     await prepare();
-    await play();
+    // await play();
 
     playing.bindStream(_radio.playingStream);
   }

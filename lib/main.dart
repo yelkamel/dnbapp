@@ -1,7 +1,9 @@
 import 'package:dnbapp/theme/base.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
+import 'application/profil/edit/profil_edit_screen.dart';
 import 'application/rooter.dart';
 import 'controller/bindings/auth_binding.dart';
 import 'locator.dart';
@@ -30,14 +32,13 @@ class MainApp extends StatelessWidget {
       theme: baseTheme,
       home: const Rooter(),
       initialBinding: AuthBinding(),
-
-      /*  getPages: [
+      getPages: [
         GetPage(
-          name: '/',
-          page: () => const Rooter(),
-          transition: Transition.noTransition,
+          name: '/edit',
+          page: () => const ProfilEditScreen(),
+          transition: Transition.fadeIn,
         ),
-      ],*/
+      ],
     );
   }
 }

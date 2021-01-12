@@ -1,3 +1,4 @@
+import 'package:dnbapp/application/container/dnb_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -19,14 +20,17 @@ class _DnbWorldState extends State<DnbWorld> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.width,
-      child: GoogleMap(
-        onMapCreated: _onMapCreated,
-        mapType: MapType.terrain,
-        initialCameraPosition: CameraPosition(
-          target: _center,
+    final size = MediaQuery.of(context).size.width * 0.7;
+    return DnbCard(
+      child: SizedBox(
+        width: size,
+        height: size,
+        child: GoogleMap(
+          onMapCreated: _onMapCreated,
+          mapType: MapType.terrain,
+          initialCameraPosition: CameraPosition(
+            target: _center,
+          ),
         ),
       ),
     );
