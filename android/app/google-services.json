@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "99560161403",
+    "project_id": "jumpcoeur",
+    "storage_bucket": "jumpcoeur.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99560161403:android:f376c0439df5e58a5a22de",
+        "android_client_info": {
+          "package_name": "com.dnbapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99560161403-bhc6ts0djf0eckrok66c1l9uuri8nv65.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnmSGl9sQz4mevUdu3cK5D8k-n9r38Tyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99560161403-bhc6ts0djf0eckrok66c1l9uuri8nv65.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "99560161403-dt3cc2a6t7dtfripjfgpgr3e4g4ethnr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dnbapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
