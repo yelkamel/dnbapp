@@ -17,8 +17,6 @@ class ProfilInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.subtitle1),
           Text(user.nbpost.toString(),
               style: Theme.of(context).textTheme.subtitle2),
-          Text(user.badge.toString(),
-              style: Theme.of(context).textTheme.subtitle1),
         ],
       );
     });

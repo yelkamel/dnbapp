@@ -4,12 +4,12 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 class DnbButton extends StatelessWidget {
   final Widget child;
   final Function onPressed;
-  final NeumorphicShape shape;
+  final EdgeInsets padding;
   const DnbButton({
     Key key,
     this.child,
     this.onPressed,
-    this.shape,
+    this.padding = const EdgeInsets.all(12.0),
   }) : super(key: key);
 
   @override
@@ -18,9 +18,10 @@ class DnbButton extends StatelessWidget {
       onPressed: onPressed,
       style: NeumorphicStyle(
         shape: NeumorphicShape.convex,
+        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
         color: Theme.of(context).cardColor,
       ),
-      padding: const EdgeInsets.all(12.0),
+      padding: padding,
       child: child,
     );
   }

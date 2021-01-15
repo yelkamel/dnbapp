@@ -3,14 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class DnbTextInput extends HookWidget {
-  final TextEditingController controller;
+  final String text;
   final String label;
-  final void Function(String) onChanged;
+  final String hintText;
 
-  const DnbTextInput({this.controller, this.label, this.onChanged});
+  final void Function(String) onChanged;
+  final void Function(String) onSubmitted;
+
+  const DnbTextInput({
+    this.text,
+    this.label,
+    this.hintText,
+    this.onChanged,
+    this.onSubmitted,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final controller = useTextEditingController(text: text);
+
     return DnbCard(
       child: SizedBox(
         height: 60,
@@ -18,11 +29,14 @@ class DnbTextInput extends HookWidget {
           onChanged: onChanged,
           autofocus: false,
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.only(left: 5, top: 10),
-            hintText: 'Modifier',
-            labelText: label,
-          ),
+              contentPadding: EdgeInsets.only(left: 5, top: 10),
+              hintText: hintText,
+              labelText: label,
+              counterText: ''),
+          maxLength: 30,
           controller: controller,
+          onSubmitted: onSubmitted,
+          textInputAction: TextInputAction.done,
         ),
       ),
     );

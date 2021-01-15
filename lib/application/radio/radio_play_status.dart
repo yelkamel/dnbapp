@@ -1,3 +1,4 @@
+import 'package:dnbapp/animation/loading_animated.dart';
 import 'package:dnbapp/controller/radio_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,10 +14,15 @@ class RadioPlayStatus extends HookWidget {
         useAnimationController(duration: 500.milliseconds);
 
     return Obx(() {
-      if (Get.find<RadioController>().playing.value) {
+      final radio = Get.find<RadioController>();
+      if (radio.playing.value) {
         animatedController.forward();
       } else {
         animatedController.reverse();
+      }
+
+      if (radio.loading.value) {
+        return SizedBox(height: 25, width: 25, child: LoadingAnimated());
       }
 
       return AnimatedIcon(

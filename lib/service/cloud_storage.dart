@@ -28,4 +28,15 @@ class CloudStorage {
       return null;
     }
   }
+
+  Future<String> getPictureFor(String uid) async {
+    try {
+      Reference ref = service.ref().child('profilpicture/$uid');
+      final url = await ref.getDownloadURL();
+      return url;
+    } catch (e) {
+      Get.snackbar("Oups", "error getting Picture CloudStorage url");
+      return null;
+    }
+  }
 }

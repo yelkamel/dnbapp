@@ -7,6 +7,6 @@ class AuthBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<AuthController>(AuthController(), permanent: true);
-    Get.lazyPut(() => RadioController());
+    Get.put<RadioController>(RadioController(), permanent: true);
   }
 }

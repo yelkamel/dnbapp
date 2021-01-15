@@ -7,12 +7,6 @@ import 'color.dart';
 class BaseColors {
   static Color color1 = Color(0xfff8f9fa); //  #f8f9fa
   static Color color2 = Color(0xffe9ecef); //  #e9ecef
-  static Color color3 = Color(0xffdee2e6); //  #dee2e6
-  static Color color4 = Color(0xffced4da); //  #ced4da
-  static Color color5 = Color(0xffadb5bd); //  #adb5bd
-  static Color color6 = Color(0xff6c757d); //  #6c757d
-  static Color color7 = Color(0xff495057); //  #495057
-  static Color color8 = Color(0xff495057); //  #495057
   static Color color9 = Color(0xff343a40); //  #343a40
   static Color color10 = Color(0xff212529); //  #212529
 
@@ -39,7 +33,7 @@ class BaseColors {
 final ThemeData baseTheme = ThemeData(
   backgroundColor: BaseColors.color1,
   scaffoldBackgroundColor: BaseColors.color1,
-  primaryColor: BaseColors.color5,
+  primaryColor: BaseColors.color9,
   accentColor: BaseColors.color2,
   dividerColor: DnbColors.grey.withOpacity(0.6),
   highlightColor: Colors.transparent,

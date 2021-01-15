@@ -10,23 +10,22 @@ class ProfilPicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       final user = Get.find<UserController>().user;
-
       return Hero(
-          tag: "pp",
-          child: Container(
-            height: size,
-            width: size,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border:
-                  Border.all(width: 4, color: Theme.of(context).accentColor),
-            ),
-            child: user.pp != null
-                ? ClipOval(
-                    child: Image.network(user.pp),
-                  )
-                : Container(),
-          ));
+        tag: "pp",
+        child: Container(
+          height: size,
+          width: size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(width: 4, color: Theme.of(context).accentColor),
+          ),
+          child: user.pp != null
+              ? ClipOval(
+                  child: Image.network(user.pp),
+                )
+              : Container(),
+        ),
+      );
     });
   }
 }

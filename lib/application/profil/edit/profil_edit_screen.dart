@@ -1,4 +1,5 @@
 import 'package:dnbapp/application/container/dnb_button.dart';
+import 'package:dnbapp/application/container/dnb_card.dart';
 import 'package:dnbapp/application/container/dnb_icon.dart';
 import 'package:dnbapp/application/container/dnb_textinput.dart';
 import 'package:dnbapp/controller/user_controller.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
+import 'profil_badge_select.dart';
 import 'profil_edit_picture.dart';
 
 class ProfilEditScreen extends HookWidget {
@@ -18,21 +20,10 @@ class ProfilEditScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final user = Get.find<UserController>().user;
-    final nameTextController = useTextEditingController(text: user.name);
 
     return Scaffold(
       appBar: AppBar(
         title: Text("Edit Profil"),
-      ),
-      floatingActionButton: DnbIcon(
-        size: 35,
-        onPressed: () async {
-          await Database()
-              .updateUser(user.id, {"name": nameTextController.text});
-
-          Get.back();
-        },
-        icon: Icons.save,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -44,9 +35,17 @@ class ProfilEditScreen extends HookWidget {
                 ProfilEditPicture(),
                 SizedBox(height: 20),
                 DnbTextInput(
-                  controller: nameTextController,
+                  text: user.name,
+                  hintText: 'Add your name 😚',
                   label: 'Name',
+                  onSubmitted: (name) {
+                    Database().updateUser(user.id, {"name": name});
+                  },
                 ),
+                SizedBox(height: 20),
+                DnbCard(
+                  child: BadgeSelectScreen(),
+                )
               ],
             ),
           ),

@@ -13,12 +13,14 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     pp: json['pp'] as String,
     email: json['email'] as String,
-    badge: json['badge'] as String,
+    badge: json['badge'] == null
+        ? null
+        : BadgeModel.fromJson(json['badge'] as Map<String, dynamic>),
     createdDate: dateTimefromJson(json['createdDate'] as Timestamp),
     nbpost: json['nbpost'] as int,
     xp: json['xp'] as int,
-    tresor: (json['tresor'] as List).map((e) => e as String).toList(),
-    postIds: (json['postIds'] as List).map((e) => e as String).toList(),
+    tresor: (json['tresor'] as List)?.map((e) => e as String)?.toList(),
+    postIds: (json['postIds'] as List)?.map((e) => e as String)?.toList(),
   );
 }
 
@@ -28,10 +30,10 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'name': instance.name,
       'pp': instance.pp,
       'email': instance.email,
-      'badge': instance.badge,
       'createdDate': dateTimetoJson(instance.createdDate),
       'nbpost': instance.nbpost,
       'xp': instance.xp,
+      'badge': instance.badge?.toJson(),
       'tresor': instance.tresor,
       'postIds': instance.postIds,
     };

@@ -1,5 +1,8 @@
+import 'package:dnbapp/application/container/dnb_badge.dart';
+import 'package:dnbapp/application/container/dnb_button.dart';
 import 'package:dnbapp/application/container/dnb_card.dart';
 import 'package:dnbapp/application/container/dnb_icon.dart';
+import 'package:dnbapp/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -34,8 +37,14 @@ class ProfilHeader extends StatelessWidget {
           Positioned(
             right: 0,
             top: 0,
-            child: DnbIcon(
-                onPressed: () => Get.toNamed("/edit"), icon: Icons.edit),
+            child: Obx(() {
+              final user = Get.find<UserController>().user;
+              return DnbBadge(
+                onSelect: () => Get.toNamed("/edit"),
+                size: 40,
+                badge: user.badge,
+              );
+            }),
           ),
         ],
       ),

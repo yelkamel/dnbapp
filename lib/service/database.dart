@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dnbapp/model/badge_model.dart';
 import 'package:dnbapp/model/post_model.dart';
 import 'package:dnbapp/model/user_model.dart';
 import 'package:get/get.dart';
@@ -56,7 +57,17 @@ class Database {
         .map((QuerySnapshot query) {
       List<PostModel> retVal = List();
       query.docs.forEach((element) {
-        retVal.add(PostModel.fromJson(element.data()));
+        retVal.add(PostModel.fromJson({"id": element.id, ...element.data()}));
+      });
+      return retVal;
+    });
+  }
+
+  Stream<List<BadgeModel>> badgeStream() {
+    return service.collection("badge").snapshots().map((QuerySnapshot query) {
+      List<BadgeModel> retVal = List();
+      query.docs.forEach((element) {
+        retVal.add(BadgeModel.fromJson({"id": element.id, ...element.data()}));
       });
       return retVal;
     });
