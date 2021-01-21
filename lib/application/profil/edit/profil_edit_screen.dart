@@ -23,7 +23,14 @@ class ProfilEditScreen extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Profil"),
+        title: Text(
+          "Edit Profil",
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme:
+            IconThemeData(color: Theme.of(context).textTheme.subtitle1.color),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),

@@ -1,8 +1,10 @@
+import 'package:dnbapp/application/post/post_screen.dart';
 import 'package:dnbapp/theme/base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
+import 'application/login/onboarding_screen.dart';
 import 'application/profil/edit/profil_edit_screen.dart';
 import 'application/rooter.dart';
 import 'controller/bindings/auth_binding.dart';
@@ -28,7 +30,7 @@ class MainApp extends StatelessWidget {
           child: child,
         );
       },
-      title: 'Evolum',
+      title: 'Dnb APP',
       theme: baseTheme,
       home: const Rooter(),
       initialBinding: AuthBinding(),
@@ -37,6 +39,16 @@ class MainApp extends StatelessWidget {
           name: '/edit',
           page: () => const ProfilEditScreen(),
           transition: Transition.fadeIn,
+        ),
+        GetPage(
+          name: '/onboarding',
+          page: () => const OnBoardingScreen(),
+          transition: Transition.leftToRight,
+        ),
+        GetPage(
+          name: '/post',
+          page: () => const PostScreen(),
+          transition: Transition.leftToRight,
         ),
       ],
     );

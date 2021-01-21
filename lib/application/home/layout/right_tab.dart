@@ -1,6 +1,6 @@
-import 'package:dnbapp/controller/auth_controller.dart';
+import 'package:dnbapp/animation/bullebackground.dart';
+import 'package:dnbapp/application/home/widget/feed.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class RightTab extends StatefulWidget {
   const RightTab({Key key}) : super(key: key);
@@ -16,15 +16,15 @@ class _RightTabState extends State<RightTab>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text("Settings"),
-        RaisedButton(
-          onPressed: Get.find<AuthController>().signOut,
-          child: Text("Deconexion"),
-        )
-      ],
+    return BulleBackground(
+      maxBubble: 10,
+      color: Theme.of(context).accentColor,
+      child: Column(
+        children: [
+          SizedBox(height: 20),
+          PostFeed(),
+        ],
+      ),
     );
   }
 }

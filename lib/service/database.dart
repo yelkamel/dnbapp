@@ -34,25 +34,19 @@ class Database {
       .snapshots()
       .map((snap) => UserModel.fromJson(snap.data()));
 
-  Future<void> addPost(String content, String uid) async {
+  Future<DocumentReference> addPost(PostModel post) async {
     try {
-      await service.collection("users").doc(uid).collection("todos").add({
-        'dateCreated': Timestamp.now(),
-        'content': content,
-        'done': false,
-      });
+      return await service.collection("post").add(post.toJson());
     } catch (e) {
       Get.snackbar("Database Oupsi !", e);
       rethrow;
     }
   }
 
-  Stream<List<PostModel>> postStream(String uid) {
+  Stream<List<PostModel>> postStream() {
     return service
-        .collection("user")
-        .doc(uid)
-        .collection("todos")
-        .orderBy("dateCreated", descending: true)
+        .collection("post")
+        .orderBy("createdDate", descending: true)
         .snapshots()
         .map((QuerySnapshot query) {
       List<PostModel> retVal = List();

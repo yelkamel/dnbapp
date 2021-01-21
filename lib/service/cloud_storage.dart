@@ -7,12 +7,36 @@ import 'package:get/get.dart';
 class CloudStorage {
   final service = FirebaseStorage.instance;
 
+  Future<String> getPostVideoById(String id) async {
+    try {
+      Reference ref = service.ref().child('postvideo/$id');
+      debugPrint("===> [ClouseStorage] ref $ref");
+      final url = await ref.getDownloadURL();
+      return url;
+    } catch (e) {
+      Get.snackbar("Oups", "error getting CStorage url");
+      return null;
+    }
+  }
+
   Future<String> getRadioFor(String radioId) async {
     try {
       Reference ref = service.ref().child('radio/$radioId.mp3');
       debugPrint("===> [ClouseStorage] ref $ref");
       final url = await ref.getDownloadURL();
       return url;
+    } catch (e) {
+      Get.snackbar("Oups", "error getting CStorage url");
+      return null;
+    }
+  }
+
+  UploadTask uploadVideoWithId(String id, File file) {
+    try {
+      debugPrint("===> [Upload] upload video to postvideo/$id");
+      file.rename(id);
+      Reference ref = service.ref().child('postvideo/$id');
+      return ref.putFile(file);
     } catch (e) {
       Get.snackbar("Oups", "error getting CStorage url");
       return null;

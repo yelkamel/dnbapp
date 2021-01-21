@@ -1,4 +1,3 @@
-import 'package:dnbapp/application/container/dnb_button.dart';
 import 'package:dnbapp/model/badge_model.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
@@ -18,20 +17,16 @@ class DnbBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (imageOnly) {
-      return NeumorphicButton(
+      return RawMaterialButton(
         onPressed: onSelect,
-        style: NeumorphicStyle(
-          shape: NeumorphicShape.convex,
-          boxShape: NeumorphicBoxShape.circle(),
-          color: Theme.of(context).cardColor,
-        ),
+        constraints: BoxConstraints(maxHeight: 50, maxWidth: 50),
         padding: EdgeInsets.all(5),
         child: Container(
           width: size,
           height: size,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(width: 4, color: Theme.of(context).accentColor),
+            border: Border.all(width: 2, color: Theme.of(context).accentColor),
           ),
           child: Hero(
             tag: badge.id,
@@ -42,11 +37,12 @@ class DnbBadge extends StatelessWidget {
       );
     }
 
-    return DnbButton(
+    return RawMaterialButton(
       onPressed: onSelect,
       child: Container(
         width: MediaQuery.of(context).size.width * 0.7,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+        margin: EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

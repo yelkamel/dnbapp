@@ -1,9 +1,8 @@
+import 'package:dnbapp/animation/bullebackground.dart';
 import 'package:dnbapp/application/container/dnb_button.dart';
-import 'package:dnbapp/application/container/dnb_card.dart';
-import 'package:dnbapp/application/container/dnb_icon.dart';
+import 'package:dnbapp/application/home/widget/upload_progress.dart';
 import 'package:dnbapp/application/world/world.dart';
 import 'package:dnbapp/application/radio/radio_container.dart';
-import 'package:dnbapp/controller/radio_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -22,27 +21,40 @@ class _MiddleTabState extends State<MiddleTab>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: RadioContainer(),
-        ),
-        DnbWorld(),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: DnbIcon(
-              icon: Icons.add,
-              size: 30,
-              shape: NeumorphicShape.convex,
-              onPressed: () {},
+    return Container(
+      child: BulleBackground(
+        maxBubble: 10,
+        color: Theme.of(context).accentColor,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: RadioContainer(),
             ),
-          ),
+            Align(
+              alignment: Alignment.topRight,
+              child: UploadCircularProgress(),
+            ),
+            Center(child: DnbWorld()),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: DnbButton(
+                  onPress: () {
+                    Get.toNamed("/post");
+                  },
+                  shape: CircleBorder(),
+                  child: Icon(
+                    Icons.add,
+                    size: 30,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

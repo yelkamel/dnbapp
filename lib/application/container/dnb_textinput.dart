@@ -28,11 +28,17 @@ class DnbTextInput extends HookWidget {
         child: TextField(
           onChanged: onChanged,
           autofocus: false,
+          style: Theme.of(context).textTheme.bodyText1,
           decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(left: 5, top: 10),
-              hintText: hintText,
-              labelText: label,
-              counterText: ''),
+            contentPadding: EdgeInsets.only(left: 5, top: 10),
+            hintText: hintText,
+            labelText: label,
+            hintStyle: Theme.of(context)
+                .textTheme
+                .bodyText2
+                .copyWith(fontWeight: FontWeight.w400),
+            counterText: '',
+          ),
           maxLength: 30,
           controller: controller,
           onSubmitted: onSubmitted,

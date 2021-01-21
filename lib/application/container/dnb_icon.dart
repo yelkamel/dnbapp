@@ -16,19 +16,13 @@ class DnbIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicButton(
+    return RawMaterialButton(
       onPressed: onPressed,
-      style: NeumorphicStyle(
-        color: Theme.of(context).cardColor,
-        shape: shape,
-        boxShape: NeumorphicBoxShape.circle(),
-      ),
-      child: NeumorphicIcon(
-        icon,
-        size: size,
-        style: NeumorphicStyle(
-          color: Theme.of(context).iconTheme.color,
-          surfaceIntensity: 5.0,
+      constraints: BoxConstraints(maxHeight: 50, maxWidth: 50),
+      child: Container(
+        child: Icon(
+          icon,
+          size: size,
         ),
       ),
     );

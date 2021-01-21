@@ -30,10 +30,10 @@ class RadioController extends GetxController {
 
     if (user.badge != null) {
       final url = await CloudStorage().getRadioFor(user.badge.id);
-      print("===> [Radio] URL to Play : $url");
       final duration = await _radio.setUrl(url);
       await _radio
-          .seek(Duration(seconds: Random().nextInt(duration.inSeconds - 1)));
+          .seek(Duration(seconds: Random().nextInt(duration.inSeconds - 20)));
+      Get.find<UserController>().snackRadioStarted();
     }
   }
 
@@ -46,6 +46,8 @@ class RadioController extends GetxController {
   }
 
   Future<void> playpause() async {
+    //  / Get.find<UserController>().snackRadioStarted();
+    // _radio.setVolume(0);
     _radio.playing ? _radio.pause() : _radio.play();
   }
 

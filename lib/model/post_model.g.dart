@@ -9,19 +9,23 @@ part of 'post_model.dart';
 PostModel _$PostModelFromJson(Map<String, dynamic> json) {
   return PostModel(
     id: json['id'] as String,
+    uid: json['uid'] as String,
     name: json['name'] as String,
     createdDate: dateTimefromJson(json['createdDate'] as Timestamp),
-    user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
     type: json['type'] as String,
     views: json['views'] as int,
-  );
+  )
+    ..producer = json['producer'] as String
+    ..trackName = json['trackName'] as String;
 }
 
 Map<String, dynamic> _$PostModelToJson(PostModel instance) => <String, dynamic>{
       'id': instance.id,
+      'uid': instance.uid,
       'name': instance.name,
+      'producer': instance.producer,
+      'trackName': instance.trackName,
       'createdDate': dateTimetoJson(instance.createdDate),
-      'user': instance.user.toJson(),
       'type': instance.type,
       'views': instance.views,
     };

@@ -18,6 +18,14 @@ class BottomTabBar extends HookWidget {
         TabItem(title: 'Feeds', icon: Icons.topic)
       ],
       style: TabStyle.reactCircle,
+      color: Theme.of(context).textTheme.subtitle1.color,
+      activeColor: Theme.of(context).textTheme.subtitle1.color,
+      backgroundColor: Theme.of(context).backgroundColor,
+      elevation: 20,
+      gradient: LinearGradient(colors: [
+        Theme.of(context).primaryColor,
+        Theme.of(context).accentColor,
+      ]),
       controller: controller,
       onTap: (index) {
         controller.animateTo(index);

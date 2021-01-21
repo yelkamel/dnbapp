@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class BulleBackground extends StatefulWidget {
   final Widget child;
   final Color color;
+  final double maxBubble;
 
   const BulleBackground({
     Key key,
     @required this.child,
     this.color,
+    this.maxBubble = 20,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -22,7 +24,6 @@ class _BulleBackgroundState extends State<BulleBackground>
   AnimationController _controller;
   List<Bubble> bubbles;
   final int numberOfBubbles = 60;
-  final double maxBubbleSize = 20.0;
 
   @override
   void initState() {
@@ -32,7 +33,7 @@ class _BulleBackgroundState extends State<BulleBackground>
     bubbles = List();
     int i = numberOfBubbles;
     while (i > 0) {
-      bubbles.add(Bubble(widget.color, maxBubbleSize));
+      bubbles.add(Bubble(widget.color, widget.maxBubble));
       i--;
     }
 

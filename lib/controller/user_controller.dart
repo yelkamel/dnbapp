@@ -1,6 +1,7 @@
 import 'package:dnbapp/model/user_model.dart';
 import 'package:dnbapp/service/cloud_storage.dart';
 import 'package:dnbapp/service/database.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'radio_controller.dart';
@@ -36,5 +37,21 @@ class UserController extends GetxController {
     final urlPP = await CloudStorage().getPictureFor(user.id);
     await Database().updateUser(user.id, {"pp": urlPP});
     _userModel.update((_) => _.pp = urlPP);
+  }
+
+  void snackRadioStarted() {
+    Get.snackbar(
+      "Welcome  ${user.name}",
+      "You are listen to ${user.badge.name} radio",
+      colorText: Theme.of(Get.context).textTheme.bodyText1.color,
+      borderColor: Theme.of(Get.context).primaryColor,
+      borderWidth: 1,
+      backgroundGradient: LinearGradient(
+        colors: [
+          Theme.of(Get.context).primaryColor,
+          Theme.of(Get.context).accentColor,
+        ],
+      ),
+    );
   }
 }

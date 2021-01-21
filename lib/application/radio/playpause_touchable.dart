@@ -11,8 +11,10 @@ class RadioPlayPauseTouchable extends GetWidget<RadioController> {
   @override
   Widget build(BuildContext context) {
     return DnbButton(
-      onPressed: controller.playpause,
+      shape: CircleBorder(),
+      onPress: controller.playpause,
       child: child,
+      color: Theme.of(context).primaryColor,
     );
   }
 }

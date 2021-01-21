@@ -14,25 +14,28 @@ class ProfilScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverFab(
-      floatingWidget: ProfilHeader(),
-      floatingPosition: FloatingPosition(left: 40, top: -30),
-      expandedHeight: headerHeight,
-      slivers: <Widget>[
-        SliverAppBar(
-          expandedHeight: headerHeight,
-          pinned: true,
-          flexibleSpace: ProfilVideo(height: headerHeight),
-        ),
-        SliverList(
-          delegate: SliverChildListDelegate(
-            List.generate(
-              30,
-              (int index) => ListTile(title: Text("Item $index")),
+    return Container(
+      color: Theme.of(context).backgroundColor,
+      child: SliverFab(
+        floatingWidget: ProfilHeader(),
+        floatingPosition: FloatingPosition(left: 40, top: -30),
+        expandedHeight: headerHeight,
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: headerHeight,
+            pinned: true,
+            flexibleSpace: ProfilVideo(height: headerHeight),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              List.generate(
+                30,
+                (int index) => ListTile(title: Text("Item $index")),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -23,6 +23,7 @@ class AuthController extends GetxController {
     final userFirestore = await Database().getUserById(userCredential.user.uid);
     print("===> Get User Firestore $userFirestore");
     if (userFirestore == null) {
+      Get.toNamed("/onboarding");
       UserModel _user = UserModel(
         id: userCredential.user.uid,
         name: userCredential.user.displayName,

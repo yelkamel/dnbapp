@@ -1,5 +1,5 @@
-import 'package:dnbapp/application/container/dnb_card.dart';
 import 'package:dnbapp/controller/radio_controller.dart';
+import 'package:dnbapp/crossapp/lottie_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -15,7 +15,24 @@ class RadioContainer extends GetWidget<RadioController> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: RadioPlayPauseTouchable(child: RadioPlayStatus()),
+      child: RadioPlayPauseTouchable(
+        child: SizedBox(
+          height: 40,
+          width: 40,
+          child: Stack(
+            children: [
+              Opacity(
+                opacity: 0.4,
+                child: LottieAnimated(
+                  url: "assets/lottie/radio.json",
+                  repeat: true,
+                ),
+              ),
+              Align(alignment: Alignment.center, child: RadioPlayStatus()),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
