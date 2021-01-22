@@ -24,6 +24,10 @@ class _LeftTabState extends State<LeftTab> with AutomaticKeepAliveClientMixin {
           Theme.of(context).accentColor,
         ],
       ),
+      closeIcon: Icon(Icons.arrow_back,
+          color: Theme.of(context).textTheme.bodyText1.color),
+      openIcon: Icon(Icons.help_center,
+          color: Theme.of(context).textTheme.bodyText1.color),
       menuPageContent: Padding(
         padding: const EdgeInsets.only(right: 150.0, bottom: 30),
         child: Expanded(

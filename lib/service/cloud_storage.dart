@@ -55,6 +55,7 @@ class CloudStorage {
 
   Future<String> getPictureFor(String uid) async {
     try {
+      print("===> [Cloud Storage] get picture profilpicture/$uid");
       Reference ref = service.ref().child('profilpicture/$uid');
       final url = await ref.getDownloadURL();
       return url;

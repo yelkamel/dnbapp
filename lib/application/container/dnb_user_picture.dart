@@ -13,19 +13,15 @@ class DnbUserPicture extends StatelessWidget {
       future: CloudStorage().getPictureFor(uid),
       builder: (context, snap) {
         if (!snap.hasData) return LoadingAnimated(size: 20);
-        return Hero(
-          tag: "pp",
-          child: Container(
-            height: size,
-            width: size,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border:
-                  Border.all(width: 2, color: Theme.of(context).accentColor),
-            ),
-            child: ClipOval(
-              child: Image.network(snap.data),
-            ),
+        return Container(
+          height: size,
+          width: size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(width: 2, color: Theme.of(context).accentColor),
+          ),
+          child: ClipOval(
+            child: Image.network(snap.data),
           ),
         );
       },

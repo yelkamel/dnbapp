@@ -1,3 +1,4 @@
+import 'package:dnbapp/dialog/email_login.dart';
 import 'package:dnbapp/model/user_model.dart';
 import 'package:dnbapp/service/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -65,6 +66,36 @@ class AuthController extends GetxController {
           break;
       }
       return false;
+    }
+  }
+
+  Future<bool> isSignUpUser(String email) async {
+    final array = await _auth.fetchSignInMethodsForEmail(email);
+    return array.isEmpty;
+  }
+
+  Future<void> logByEmailAndPassword() async {
+    try {
+      final Map<String, String> emailPAssword =
+          await Get.dialog(EmailLoginDialog());
+
+      final isSignUp = await isSignUpUser(emailPAssword["email"]);
+      UserCredential userCredential;
+      if (isSignUp) {
+        userCredential = await _auth.createUserWithEmailAndPassword(
+            email: emailPAssword["email"], password: emailPAssword["password"]);
+      } else {
+        userCredential = await _auth.signInWithEmailAndPassword(
+            email: emailPAssword["email"], password: emailPAssword["password"]);
+      }
+
+      await createOrGetUser(userCredential, pp: null);
+    } catch (e) {
+      Get.snackbar(
+        "Error signing out",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 

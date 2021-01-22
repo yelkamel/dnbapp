@@ -1,11 +1,10 @@
-import 'package:dnbapp/application/container/dnb_button.dart';
+import 'package:dnbapp/animation/bullebackground.dart';
 import 'package:dnbapp/application/container/dnb_card.dart';
-import 'package:dnbapp/application/container/dnb_icon.dart';
 import 'package:dnbapp/application/container/dnb_textinput.dart';
 import 'package:dnbapp/controller/user_controller.dart';
+import 'package:dnbapp/crossapp/glass_container.dart';
 import 'package:dnbapp/service/database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -32,28 +31,49 @@ class ProfilEditScreen extends HookWidget {
         iconTheme:
             IconThemeData(color: Theme.of(context).textTheme.subtitle1.color),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Center(
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.7,
-            child: Column(
-              children: [
-                ProfilEditPicture(),
-                SizedBox(height: 20),
-                DnbTextInput(
-                  text: user.name,
-                  hintText: 'Add your name 😚',
-                  label: 'Name',
-                  onSubmitted: (name) {
-                    Database().updateUser(user.id, {"name": name});
-                  },
-                ),
-                SizedBox(height: 20),
-                DnbCard(
-                  child: BadgeSelectScreen(),
-                )
-              ],
+      body: BulleBackground(
+        color: Theme.of(context).primaryColor,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.85,
+              child: Column(
+                children: [
+                  GlassContainer(
+                    child: Row(
+                      children: [
+                        ProfilEditPicture(),
+                        Expanded(
+                          child: DnbTextInput(
+                            text: user.name,
+                            hintText: 'Add your name 😚',
+                            label: 'Name',
+                            onSubmitted: (name) {
+                              Database().updateUser(user.id, {"name": name});
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  GlassContainer(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            "Select your badge",
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                        ),
+                        BadgeSelectScreen(),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

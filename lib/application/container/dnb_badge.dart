@@ -16,6 +16,22 @@ class DnbBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (badge == null) {
+      return RawMaterialButton(
+        onPressed: onSelect,
+        constraints: BoxConstraints(maxHeight: 50, maxWidth: 50),
+        padding: EdgeInsets.all(5),
+        child: Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(width: 2, color: Theme.of(context).accentColor),
+          ),
+          child: Icon(Icons.add),
+        ),
+      );
+    }
     if (imageOnly) {
       return RawMaterialButton(
         onPressed: onSelect,
@@ -28,11 +44,8 @@ class DnbBadge extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(width: 2, color: Theme.of(context).accentColor),
           ),
-          child: Hero(
-            tag: badge.id,
-            child: ClipOval(
-                child: Image.asset("assets/image/badge/${badge.id}.jpg")),
-          ),
+          child: ClipOval(
+              child: Image.asset("assets/image/badge/${badge.id}.jpg")),
         ),
       );
     }
@@ -54,11 +67,8 @@ class DnbBadge extends StatelessWidget {
                 border:
                     Border.all(width: 4, color: Theme.of(context).accentColor),
               ),
-              child: Hero(
-                tag: badge.id,
-                child: ClipOval(
-                  child: Image.asset("assets/image/badge/${badge.id}.jpg"),
-                ),
+              child: ClipOval(
+                child: Image.asset("assets/image/badge/${badge.id}.jpg"),
               ),
             ),
             Text(

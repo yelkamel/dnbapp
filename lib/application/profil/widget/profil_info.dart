@@ -13,10 +13,8 @@ class ProfilInfo extends StatelessWidget {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(user.name.toString(),
+          Text(user.name.capitalizeFirst.toString(),
               style: Theme.of(context).textTheme.subtitle1),
-          Text(user.nbpost.toString(),
-              style: Theme.of(context).textTheme.subtitle2),
         ],
       );
     });

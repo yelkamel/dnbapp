@@ -26,7 +26,7 @@ class _WorldContainerState extends State<WorldContainer>
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 5));
     _animationController.repeat(reverse: true);
-    _animation = Tween(begin: 0, end: 20.0).animate(_animationController)
+    _animation = Tween(begin: 0.0, end: 15.0).animate(_animationController)
       ..addListener(() {
         setState(() {});
       });

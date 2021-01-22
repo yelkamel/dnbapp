@@ -43,6 +43,21 @@ class Database {
     }
   }
 
+  Stream<List<PostModel>> userPostStream(String uid) {
+    return service
+        .collection("post")
+        .orderBy("createdDate", descending: true)
+        .where("uid", isEqualTo: uid)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<PostModel> retVal = [];
+      query.docs.forEach((element) {
+        retVal.add(PostModel.fromJson({...element.data(), "id": element.id}));
+      });
+      return retVal;
+    });
+  }
+
   Stream<List<PostModel>> postStream() {
     return service
         .collection("post")
@@ -51,7 +66,7 @@ class Database {
         .map((QuerySnapshot query) {
       List<PostModel> retVal = List();
       query.docs.forEach((element) {
-        retVal.add(PostModel.fromJson({"id": element.id, ...element.data()}));
+        retVal.add(PostModel.fromJson({...element.data(), "id": element.id}));
       });
       return retVal;
     });

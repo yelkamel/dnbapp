@@ -6,6 +6,7 @@ class DnbTextInput extends HookWidget {
   final String text;
   final String label;
   final String hintText;
+  final bool obscureText;
 
   final void Function(String) onChanged;
   final void Function(String) onSubmitted;
@@ -16,6 +17,7 @@ class DnbTextInput extends HookWidget {
     this.hintText,
     this.onChanged,
     this.onSubmitted,
+    this.obscureText = false,
   });
 
   @override
@@ -43,6 +45,7 @@ class DnbTextInput extends HookWidget {
           controller: controller,
           onSubmitted: onSubmitted,
           textInputAction: TextInputAction.done,
+          obscureText: obscureText,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:dnbapp/animation/bullebackground.dart';
+import 'package:dnbapp/application/container/dnb_add_post.dart';
 import 'package:dnbapp/application/container/dnb_button.dart';
 import 'package:dnbapp/application/home/widget/upload_progress.dart';
 import 'package:dnbapp/application/world/world.dart';
@@ -21,40 +22,25 @@ class _MiddleTabState extends State<MiddleTab>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: BulleBackground(
-        maxBubble: 10,
-        color: Theme.of(context).accentColor,
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: RadioContainer(),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: UploadCircularProgress(),
-            ),
-            Center(child: DnbWorld()),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: DnbButton(
-                  onPress: () {
-                    Get.toNamed("/post");
-                  },
-                  shape: CircleBorder(),
-                  child: Icon(
-                    Icons.add,
-                    size: 30,
-                  ),
-                ),
-              ),
-            ),
-          ],
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.topLeft,
+          child: RadioContainer(),
         ),
-      ),
+        Align(
+          alignment: Alignment.topRight,
+          child: UploadCircularProgress(),
+        ),
+        Center(child: DnbWorld()),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: DnbAddPost(),
+          ),
+        ),
+      ],
     );
   }
 }

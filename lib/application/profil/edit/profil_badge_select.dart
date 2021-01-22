@@ -24,17 +24,22 @@ class BadgeSelectScreen extends HookWidget {
             return Column(
               children: [
                 for (final badge in snapshot.data)
-                  DnbSelectedContainer(
-                    selected: user.badge?.id == badge.id,
-                    child: DnbBadge(
-                      imageOnly: false,
-                      onSelect: () async {
-                        await Database().updateUser(user.id, {
-                          "badge": badge.toJson(),
-                        });
-                        Get.find<RadioController>().start();
-                      },
-                      badge: badge,
+                  Container(
+                    color: user.badge?.id == badge.id
+                        ? Theme.of(context).backgroundColor
+                        : Colors.transparent,
+                    child: DnbSelectedContainer(
+                      selected: user.badge?.id == badge.id,
+                      child: DnbBadge(
+                        imageOnly: false,
+                        onSelect: () async {
+                          await Database().updateUser(user.id, {
+                            "badge": badge.toJson(),
+                          });
+                          Get.find<RadioController>().start();
+                        },
+                        badge: badge,
+                      ),
                     ),
                   ),
               ],

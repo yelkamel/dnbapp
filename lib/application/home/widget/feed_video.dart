@@ -20,14 +20,20 @@ class FeedVideo extends StatelessWidget {
               snap.data,
               betterPlayerConfiguration: BetterPlayerConfiguration(
                 aspectRatio: 16 / 9,
+                controlsConfiguration: BetterPlayerControlsConfiguration(
+                  enableOverflowMenu: false,
+                  enableSkips: false,
+                ),
               ),
             ),
           );
         }
 
-        return Center(
-          child: LoadingAnimated(
-            size: 30,
+        return Expanded(
+          child: Center(
+            child: LoadingAnimated(
+              size: 30,
+            ),
           ),
         );
       },

@@ -16,6 +16,10 @@ class LoginScreen extends StatelessWidget {
             RaisedButton(
               onPressed: Get.find<AuthController>().fbLogin,
               child: Text('connect FB'),
+            ),
+            RaisedButton(
+              onPressed: Get.find<AuthController>().logByEmailAndPassword,
+              child: Text('connect By Email'),
             )
           ],
         ),
