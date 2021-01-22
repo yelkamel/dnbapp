@@ -38,17 +38,17 @@ class MainApp extends StatelessWidget {
         GetPage(
           name: '/edit',
           page: () => const ProfilEditScreen(),
-          transition: Transition.fadeIn,
+          transition: Transition.rightToLeft,
         ),
         GetPage(
           name: '/onboarding',
           page: () => const OnBoardingScreen(),
-          transition: Transition.leftToRight,
+          transition: Transition.rightToLeft,
         ),
         GetPage(
           name: '/post',
           page: () => const PostScreen(),
-          transition: Transition.leftToRight,
+          transition: Transition.downToUp,
         ),
       ],
     );
