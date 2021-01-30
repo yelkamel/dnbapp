@@ -6,18 +6,14 @@ import 'package:dnbapp/controller/user_controller.dart';
 import 'package:dnbapp/model/post_model.dart';
 import 'package:dnbapp/service/database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-enum PostStep {
-  select,
-  input,
-  upload,
-}
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class PostState extends GetxController {
   File file;
-  Rx<PostStep> step = PostStep.select.obs;
+  RxInt step = 0.obs;
   final picker = ImagePicker();
   UploadTask uploadTask;
   PostModel post = PostModel(
@@ -25,11 +21,20 @@ class PostState extends GetxController {
     views: 0,
   );
 
+  SwiperController controller = SwiperController();
+  List<String> steplist = ['intro', 'type', 'name', 'track', 'select', 'end'];
+
+  String get currentStep => steplist[step.value];
+
   @override
   void onInit() {
     super.onInit();
     Get.find<RadioController>().pause();
-    getVideoToUpload();
+    ever<int>(step, (_) {
+      if (currentStep == 'select') {
+        getVideoToUpload();
+      }
+    });
   }
 
   Future getVideoToUpload() async {
@@ -40,7 +45,7 @@ class PostState extends GetxController {
     }
 
     file = File(pickedFile.path);
-    step.value = PostStep.input;
+    step.value = steplist.indexWhere((e) => e == 'end');
   }
 
   void setField(String field, String value) {
@@ -49,13 +54,22 @@ class PostState extends GetxController {
     if (field == "trackName") post.trackName = value.capitalizeFirst;
   }
 
+  void goNextStep() async {
+    if (step.value == steplist.length - 1) {
+      submitPost();
+      return;
+    }
+    await controller.next();
+    step.value = step.value + 1;
+  }
+
   Future submitPost() async {
     final userCtrl = Get.find<UserController>();
-
-    post.createdDate = DateTime.now();
-    post.uid = userCtrl.user.id;
-    final docRef = await Database().addPost(post);
-    Get.find<UploadController>().uploadVideoPost(docRef.id, file);
+    debugPrint('===> [Upload] start');
+    // post.createdDate = DateTime.now();
+    // post.uid = userCtrl.user.id;
+    // final docRef = await Database().addPost(post);
+    // Get.find<UploadController>().uploadVideoPost(docRef.id, file);
 
     Get.back();
   }
@@ -63,6 +77,7 @@ class PostState extends GetxController {
   @override
   void onClose() {
     Get.find<RadioController>().play();
+    step.value = 0;
     super.onClose();
   }
 }

@@ -20,7 +20,8 @@ class EmailLoginDialog extends HookWidget {
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.5,
         child: BulleBackground(
-          maxBubble: 10,
+          maxSizeBubble: 35,
+          nbOfBubble: 15,
           color: Theme.of(context).accentColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

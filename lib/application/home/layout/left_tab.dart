@@ -30,34 +30,32 @@ class _LeftTabState extends State<LeftTab> with AutomaticKeepAliveClientMixin {
           color: Theme.of(context).textTheme.bodyText1.color),
       menuPageContent: Padding(
         padding: const EdgeInsets.only(right: 150.0, bottom: 30),
-        child: Expanded(
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      RaisedButton(
-                        onPressed: () {},
-                        child: Text("Idea"),
-                      ),
-                      RaisedButton(
-                        onPressed: () {},
-                        child: Text("Contact"),
-                      ),
-                      RaisedButton(
-                        onPressed: Get.find<AuthController>().signOut,
-                        child: Text("Logout"),
-                      ),
-                    ],
-                  ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    RaisedButton(
+                      onPressed: () {},
+                      child: Text("Idea"),
+                    ),
+                    RaisedButton(
+                      onPressed: () {},
+                      child: Text("Contact"),
+                    ),
+                    RaisedButton(
+                      onPressed: Get.find<AuthController>().signOut,
+                      child: Text("Logout"),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       homePageContent: ProfilScreen(),

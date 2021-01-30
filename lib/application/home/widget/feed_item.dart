@@ -21,11 +21,10 @@ class FeedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassContainer(
       blur: 10,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: ExpansionTile(
+        title: DnbPostInfo(post: post),
         children: [
-          DnbPostInfo(post: post),
-          FeedVideo(post: post),
+          SizedBox(height: 200, child: FeedVideo(post: post)),
         ],
       ),
     );

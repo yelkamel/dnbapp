@@ -1,5 +1,7 @@
+import 'package:dnbapp/application/post/post_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:animations/animations.dart';
 
 import 'dnb_button.dart';
 
@@ -8,15 +10,28 @@ class DnbAddPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DnbButton(
-      onPress: () {
-        Get.toNamed("/post");
+    return OpenContainer(
+      transitionType: ContainerTransitionType.fadeThrough,
+      openBuilder: (BuildContext context, VoidCallback _) {
+        return const PostScreen();
       },
-      shape: CircleBorder(),
-      child: Icon(
-        Icons.add,
-        size: 30,
+      closedElevation: 6.0,
+      closedShape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(30),
+        ),
       ),
+      closedColor: Theme.of(context).colorScheme.secondary,
+      closedBuilder: (BuildContext context, VoidCallback openContainer) {
+        return SizedBox(
+          height: 40,
+          width: 40,
+          child: Icon(
+            Icons.add,
+            size: 30,
+          ),
+        );
+      },
     );
   }
 }

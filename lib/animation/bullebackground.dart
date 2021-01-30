@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 class BulleBackground extends StatefulWidget {
   final Widget child;
   final Color color;
-  final double maxBubble;
+  final double maxSizeBubble;
+  final int nbOfBubble;
 
   const BulleBackground({
     Key key,
     @required this.child,
     this.color,
-    this.maxBubble = 20,
+    this.maxSizeBubble = 20,
+    this.nbOfBubble = 20,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -23,7 +25,6 @@ class _BulleBackgroundState extends State<BulleBackground>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   List<Bubble> bubbles;
-  final int numberOfBubbles = 60;
 
   @override
   void initState() {
@@ -31,10 +32,8 @@ class _BulleBackgroundState extends State<BulleBackground>
 
     // Initialize bubbles
     bubbles = List();
-    int i = numberOfBubbles;
-    while (i > 0) {
-      bubbles.add(Bubble(widget.color, widget.maxBubble));
-      i--;
+    for (int i = 0; i < widget.nbOfBubble; i++) {
+      bubbles.add(Bubble(widget.color, widget.maxSizeBubble));
     }
 
     // Init animation controller

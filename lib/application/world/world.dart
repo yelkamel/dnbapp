@@ -26,9 +26,7 @@ class DnbWorld extends StatelessWidget {
               children: [
                 state.posts.isEmpty
                     ? LoadingAnimated()
-                    : DnbPostInfo(
-                        post: state.posts.first,
-                      ),
+                    : DnbPostInfo(post: state.posts.first),
                 Expanded(
                   child: Stack(
                     children: [

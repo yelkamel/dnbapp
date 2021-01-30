@@ -18,42 +18,36 @@ class DnbPostInfo extends StatelessWidget {
       builder: (context, snap) {
         if (snap.hasData) {
           final userPost = snap.data;
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DnbUserPicture(uid: post.uid, size: 40),
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      post.name,
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle1
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
+                    padding: EdgeInsets.all(5),
+                    child: DnbUserPicture(uid: post.uid, size: 40),
                   ),
                   Text(
-                    "${post.producer} - ${post.trackName}",
+                    post.name.toString(),
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle2
-                        .copyWith(fontSize: 12),
+                        .subtitle1
+                        .copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  DnbBadge(
+                    size: 40,
+                    badge: userPost.badge,
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: DnbBadge(
-                  size: 40,
-                  badge: userPost.badge,
-                ),
+              Text(
+                "${post.producer} - ${post.trackName}",
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle2
+                    .copyWith(fontSize: 12),
               ),
             ],
           );

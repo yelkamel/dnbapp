@@ -17,7 +17,8 @@ class _RightTabState extends State<RightTab>
   @override
   Widget build(BuildContext context) {
     return BulleBackground(
-      maxBubble: 10,
+      maxSizeBubble: 35,
+      nbOfBubble: 6,
       color: Theme.of(context).accentColor,
       child: Column(
         children: [

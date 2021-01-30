@@ -11,6 +11,7 @@ class Rooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX(
+      autoRemove: false,
       builder: (_) {
         final authCtrl = Get.find<AuthController>();
         if (authCtrl.user?.uid != null) {

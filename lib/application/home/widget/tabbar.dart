@@ -1,6 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flashy_tab_bar/flashy_tab_bar.dart';
 
 class BottomTabBar extends HookWidget {
   final TabController controller;
@@ -11,26 +12,42 @@ class BottomTabBar extends HookWidget {
   Widget build(BuildContext context) {
     final currentIndex = useState(1);
 
-    return ConvexAppBar(
-      items: [
-        TabItem(title: 'Profil', icon: Icons.person),
-        TabItem(title: 'World', icon: Icons.map),
-        TabItem(title: 'Feeds', icon: Icons.topic)
-      ],
-      style: TabStyle.reactCircle,
-      color: Theme.of(context).textTheme.subtitle1.color,
-      activeColor: Theme.of(context).textTheme.subtitle1.color,
-      backgroundColor: Theme.of(context).backgroundColor,
-      elevation: 20,
-      gradient: LinearGradient(colors: [
-        Theme.of(context).primaryColor,
-        Theme.of(context).accentColor,
-      ]),
-      controller: controller,
-      onTap: (index) {
-        controller.animateTo(index);
-        currentIndex.value = index;
-      },
-    );
+    return Container(
+        decoration: BoxDecoration(
+//          borderRadius: BorderRadius.circular(20),
+          color: Theme.of(context).accentColor,
+
+          border: Border(
+            top: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+          ),
+        ),
+        child: TabBar(
+          controller: controller,
+          indicatorColor: Colors.transparent,
+          indicatorSize: TabBarIndicatorSize.tab,
+          unselectedLabelColor: Theme.of(context).primaryColor.withOpacity(0.6),
+          indicator: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Theme.of(context).accentColor,
+            boxShadow: [
+              BoxShadow(
+                color: Theme.of(context).accentColor.withOpacity(0.3),
+                blurRadius: 25,
+                offset: Offset(0, 20), // changes position of shadow
+              ),
+            ],
+          ),
+          tabs: [
+            Tab(
+              child: Icon(Icons.person),
+            ),
+            Tab(
+              child: Icon(Icons.map),
+            ),
+            Tab(
+              child: Icon(Icons.topic),
+            ),
+          ],
+        ));
   }
 }

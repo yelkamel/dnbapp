@@ -25,7 +25,7 @@ class RadioContainer extends GetWidget<RadioController> {
                 opacity: 0.4,
                 child: LottieAnimated(
                   url: "assets/lottie/radio.json",
-                  repeat: true,
+                  repeat: false,
                 ),
               ),
               Align(alignment: Alignment.center, child: RadioPlayStatus()),
