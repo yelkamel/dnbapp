@@ -14,6 +14,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 class PostState extends GetxController {
   File file;
   RxInt step = 0.obs;
+  RxBool hideNext = true.obs;
+
   final picker = ImagePicker();
   UploadTask uploadTask;
   PostModel post = PostModel(
@@ -22,19 +24,25 @@ class PostState extends GetxController {
   );
 
   SwiperController controller = SwiperController();
+
   List<String> steplist = ['intro', 'type', 'name', 'track', 'select', 'end'];
+  List<String> checklistStr = [
+    "video Dance on Drum and bass",
+    "video taked from landscape",
+    "video with good quality",
+    "video who show nicely step"
+  ];
+
+  RxList<String> checklist = <String>[].obs;
+  RxString type = "".obs;
 
   String get currentStep => steplist[step.value];
 
   @override
   void onInit() {
     super.onInit();
-    Get.find<RadioController>().pause();
-    ever<int>(step, (_) {
-      if (currentStep == 'select') {
-        getVideoToUpload();
-      }
-    });
+    // Get.find<RadioController>().pause();
+    step.value = 0;
   }
 
   Future getVideoToUpload() async {
@@ -45,7 +53,8 @@ class PostState extends GetxController {
     }
 
     file = File(pickedFile.path);
-    step.value = steplist.indexWhere((e) => e == 'end');
+    await controller.next();
+    hideNext.value = false;
   }
 
   void setField(String field, String value) {
@@ -56,11 +65,23 @@ class PostState extends GetxController {
 
   void goNextStep() async {
     if (step.value == steplist.length - 1) {
-      submitPost();
+      Get.back();
       return;
     }
     await controller.next();
-    step.value = step.value + 1;
+
+    if (currentStep == 'type') hideNext.value = true;
+    if (currentStep == 'select') hideNext.value = true;
+  }
+
+  void goBackStep() async {
+    debugPrint("===> [PostStep] ${step.value}");
+    if (step.value == 1) {
+      Get.back();
+      return;
+    }
+
+    await controller.previous();
   }
 
   Future submitPost() async {
@@ -72,6 +93,12 @@ class PostState extends GetxController {
     // Get.find<UploadController>().uploadVideoPost(docRef.id, file);
 
     Get.back();
+  }
+
+  void onSelectAgreement(String text, bool value) {
+    if (value) checklist.add(text);
+    if (!value) checklist.remove(text);
+    hideNext.value = checklist.length != checklistStr.length;
   }
 
   @override

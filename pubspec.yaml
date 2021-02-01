@@ -50,6 +50,7 @@ dependencies:
   animations: ^1.1.2
   step_progress_indicator: ^0.2.5+8
   flutter_swiper: ^1.1.6
+  circular_menu: ^1.1.2
 
   evolum_package:
     git:

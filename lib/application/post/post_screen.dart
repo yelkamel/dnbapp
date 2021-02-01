@@ -1,17 +1,17 @@
 import 'package:dnbapp/animation/bullebackground.dart';
 import 'package:dnbapp/application/post/post_state.dart';
-import 'package:dnbapp/application/post/widget/end.dart';
-import 'package:dnbapp/application/post/widget/name.dart';
-import 'package:dnbapp/application/post/widget/select.dart';
-import 'package:dnbapp/application/post/widget/track.dart';
-import 'package:dnbapp/application/post/widget/type/type.dart';
-import 'package:evolum_package/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import 'widget/intro.dart';
+import 'widget/back_button.dart';
 import 'widget/progress_button.dart';
+import 'widget/step/end.dart';
+import 'widget/step/intro.dart';
+import 'widget/step/name.dart';
+import 'widget/step/select.dart';
+import 'widget/step/track.dart';
+import 'widget/step/type.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({Key key}) : super(key: key);
@@ -43,22 +43,26 @@ class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     final state = Get.put<PostState>(PostState());
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Information about the Video",
             style: Theme.of(context).textTheme.subtitle1),
         elevation: 0,
+        leading: PostBackButton(),
       ),
       floatingActionButton: PostProgressButton(),
       body: BulleBackground(
         color: Theme.of(context).primaryColor,
         child: Swiper(
+          physics: NeverScrollableScrollPhysics(),
+          loop: false,
           itemBuilder: (BuildContext context, int index) {
             return buildContent(state, index);
           },
           itemCount: state.steplist.length,
-          pagination: SwiperPagination(),
           controller: state.controller,
+          onIndexChanged: (i) => state.step.value = i,
         ),
       ),
     );

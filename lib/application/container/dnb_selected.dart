@@ -14,6 +14,8 @@ class DnbSelectedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color:
+            selected ? Theme.of(context).backgroundColor : Colors.transparent,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
             width: 10,

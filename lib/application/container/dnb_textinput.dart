@@ -24,9 +24,9 @@ class DnbTextInput extends HookWidget {
   Widget build(BuildContext context) {
     final controller = useTextEditingController(text: text);
 
-    return DnbCard(
-      child: SizedBox(
-        height: 60,
+    return SizedBox(
+      height: 80,
+      child: DnbCard(
         child: TextField(
           onChanged: onChanged,
           autofocus: false,

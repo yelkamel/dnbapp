@@ -19,16 +19,9 @@ class CloudStorage {
     }
   }
 
-  Future<String> getRadioFor(String radioId) async {
-    try {
-      Reference ref = service.ref().child('radio/$radioId.mp3');
-      debugPrint("===> [ClouseStorage] ref $ref");
-      final url = await ref.getDownloadURL();
-      return url;
-    } catch (e) {
-      Get.snackbar("Oups", "error getting CStorage url");
-      return null;
-    }
+  String getRadioFor(String radioId) {
+    debugPrint("===> [AWS S3] radioID $radioId");
+    return "https://layouceferie.s3.eu-west-2.amazonaws.com/dnbapp/$radioId.mp3";
   }
 
   UploadTask uploadVideoWithId(String id, File file) {
