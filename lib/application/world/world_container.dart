@@ -1,15 +1,12 @@
+import 'package:evolum_package/main.dart';
 import 'package:flutter/material.dart';
 
 class WorldContainer extends StatefulWidget {
   final Widget child;
-  final double width;
-  final double height;
 
   WorldContainer({
     Key key,
     this.child,
-    this.height,
-    this.width,
   }) : super(key: key);
 
   @override
@@ -36,8 +33,6 @@ class _WorldContainerState extends State<WorldContainer>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,
-      height: widget.height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).accentColor,

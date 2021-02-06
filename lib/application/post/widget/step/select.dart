@@ -1,5 +1,5 @@
 import 'package:dnbapp/application/container/dnb_button.dart';
-import 'package:dnbapp/crossapp/glass_container.dart';
+import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../post_state.dart';

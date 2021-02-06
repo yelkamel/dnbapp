@@ -1,5 +1,5 @@
 import 'package:dnbapp/controller/radio_controller.dart';
-import 'package:dnbapp/crossapp/lottie_animated.dart';
+import 'package:dnbapp/application/common/lottie_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';

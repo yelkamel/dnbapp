@@ -1,6 +1,7 @@
 import 'package:dnbapp/application/post/post_screen.dart';
 import 'package:dnbapp/theme/base.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,12 @@ import 'locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  ///Orientation on page started
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await setupLocator();
 
   runApp(MainApp());

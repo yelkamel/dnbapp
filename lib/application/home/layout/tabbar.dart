@@ -13,14 +13,15 @@ class BottomTabBar extends HookWidget {
     final currentIndex = useState(1);
 
     return Container(
-        decoration: BoxDecoration(
+      decoration: BoxDecoration(
 //          borderRadius: BorderRadius.circular(20),
-          color: Theme.of(context).accentColor,
+        color: Theme.of(context).accentColor,
 
-          border: Border(
-            top: BorderSide(color: Theme.of(context).primaryColor, width: 2),
-          ),
+        border: Border(
+          top: BorderSide(color: Theme.of(context).primaryColor, width: 2),
         ),
+      ),
+      child: SafeArea(
         child: TabBar(
           controller: controller,
           indicatorColor: Colors.transparent,
@@ -48,6 +49,8 @@ class BottomTabBar extends HookWidget {
               child: Icon(Icons.topic),
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

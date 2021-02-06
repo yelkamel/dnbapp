@@ -1,5 +1,5 @@
 import 'package:dnbapp/application/home/widget/feed_video.dart';
-import 'package:dnbapp/crossapp/glass_container.dart';
+import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:dnbapp/model/post_model.dart';
 import 'package:flutter/material.dart';
 

@@ -57,6 +57,12 @@
     <string>1142776062808728</string>
     <key>FacebookDisplayName</key>
     <string>Dnb App</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>It's the autorization to get the video upload</string>
+    <key>NSCameraUsageDescription</key>
+    <string>It's the autorization to get the video upload</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>It's the autorization to get the sound upload</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
       <string>fbapi</string>

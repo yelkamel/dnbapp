@@ -25,12 +25,12 @@ class EmailLoginDialog extends HookWidget {
           color: Theme.of(context).accentColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: DnbTextInput(
-                  label: "email",
+                  label: "Email",
                   onChanged: (value) {
                     email.value = value;
                   },
@@ -40,7 +40,7 @@ class EmailLoginDialog extends HookWidget {
                 padding: const EdgeInsets.all(15.0),
                 child: DnbTextInput(
                   obscureText: true,
-                  label: "password",
+                  label: "Password",
                   onChanged: (value) {
                     password.value = value;
                   },

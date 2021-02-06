@@ -1,6 +1,7 @@
 import 'package:dnbapp/application/container/dnb_textinput.dart';
-import 'package:dnbapp/crossapp/glass_container.dart';
+import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../post_state.dart';
 
@@ -23,12 +24,16 @@ class PostTrackStep extends StatelessWidget {
               DnbTextInput(
                 label: 'Main Producer Name',
                 hintText: 'by who ?',
-                onChanged: (value) => state.setField("producer", value),
+                onChanged: (value) =>
+                    state.post.producer = value.capitalizeFirst,
+                initText: state.post.producer,
               ),
               DnbTextInput(
                 label: 'Track Name',
                 hintText: 'and feat ',
-                onChanged: (value) => state.setField("trackName", value),
+                onChanged: (value) =>
+                    state.post.trackName = value.capitalizeFirst,
+                initText: state.post.trackName,
               )
             ],
           ),

@@ -1,5 +1,5 @@
 import 'package:dnbapp/application/container/dnb_selected.dart';
-import 'package:dnbapp/crossapp/glass_container.dart';
+import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
@@ -7,9 +7,11 @@ import 'package:get/get.dart';
 import '../../post_state.dart';
 
 List<String> typeStr = [
-  "full onbeat",
-  "beautfilly spot",
-  "new step",
+  "Full onbeat",
+  "Synchro choreography",
+  "Beautfilly spot",
+  "New step",
+  "Tutorial",
   "I don't know"
 ];
 
@@ -24,30 +26,34 @@ class PostTypeStep extends HookWidget {
         child: FractionallySizedBox(
           heightFactor: 0.75,
           child: GlassContainer(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(30),
-                  child: Text(
-                    "Select the words that describe the most your video",
-                    style: Theme.of(context).textTheme.subtitle1,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                for (final typeStr in typeStr)
-                  DnbSelectedContainer(
-                    selected: state.type.value == typeStr,
-                    child: RawMaterialButton(
-                      constraints: BoxConstraints(minHeight: 60, minWidth: 200),
-                      onPressed: () {
-                        state.type.value = typeStr;
-                        state.hideNext.value = false;
-                      },
-                      child: Text(typeStr,
-                          style: Theme.of(context).textTheme.bodyText1),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(30),
+                    child: Text(
+                      "Select the words that describe the most your video",
+                      style: Theme.of(context).textTheme.subtitle1,
+                      textAlign: TextAlign.center,
                     ),
-                  )
-              ],
+                  ),
+                  for (final typeStr in typeStr)
+                    DnbSelectedContainer(
+                      selected: state.type.value == typeStr,
+                      child: RawMaterialButton(
+                        constraints:
+                            BoxConstraints(minHeight: 60, minWidth: 200),
+                        onPressed: () {
+                          state.type.value = typeStr;
+                          state.post.type = typeStr;
+                          state.hideNext.value = false;
+                        },
+                        child: Text(typeStr,
+                            style: Theme.of(context).textTheme.bodyText1),
+                      ),
+                    )
+                ],
+              ),
             ),
           ),
         ),

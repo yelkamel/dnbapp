@@ -1,4 +1,5 @@
 import 'package:dnbapp/animation/loading_animated.dart';
+import 'package:dnbapp/application/common/auto_size_text.dart';
 import 'package:dnbapp/model/post_model.dart';
 import 'package:dnbapp/model/user_model.dart';
 import 'package:dnbapp/service/database.dart';
@@ -29,7 +30,7 @@ class DnbPostInfo extends StatelessWidget {
                     padding: EdgeInsets.all(5),
                     child: DnbUserPicture(uid: post.uid, size: 40),
                   ),
-                  Text(
+                  AutoSizeText(
                     post.name.toString(),
                     style: Theme.of(context)
                         .textTheme

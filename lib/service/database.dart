@@ -76,7 +76,7 @@ class Database {
     return service.collection("badge").snapshots().map((QuerySnapshot query) {
       List<BadgeModel> retVal = List();
       query.docs.forEach((element) {
-        retVal.add(BadgeModel.fromJson({"id": element.id, ...element.data()}));
+        retVal.add(BadgeModel.fromJson({...element.data(), "id": element.id}));
       });
       return retVal;
     });

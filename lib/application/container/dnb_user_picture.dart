@@ -1,5 +1,6 @@
 import 'package:dnbapp/animation/loading_animated.dart';
 import 'package:dnbapp/service/cloud_storage.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 class DnbUserPicture extends StatelessWidget {
@@ -13,15 +14,17 @@ class DnbUserPicture extends StatelessWidget {
       future: CloudStorage().getPictureFor(uid),
       builder: (context, snap) {
         if (!snap.hasData) return LoadingAnimated(size: 20);
-        return Container(
-          height: size,
-          width: size,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
+        return ClipOval(
+          child: ExtendedImage.network(
+            snap.data,
+            width: size,
+            height: size,
+            fit: BoxFit.fill,
+            cache: true,
             border: Border.all(width: 2, color: Theme.of(context).accentColor),
-          ),
-          child: ClipOval(
-            child: Image.network(snap.data),
+            shape: BoxShape.circle,
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+            //cancelToken: cancellationToken,
           ),
         );
       },

@@ -21,9 +21,11 @@ dependencies:
   firebase_auth: ^0.18.4+1
   cloud_firestore: ^0.14.4
   better_player: ^0.0.46
+  i18n: ^2.0.1
 
 
   # Service 
+  extended_image: ^1.5.0
   flutter_facebook_auth: ^2.0.0+1
   google_maps_flutter: ^1.0.3
   just_audio: ^0.6.5
@@ -31,6 +33,7 @@ dependencies:
   image_picker: ^0.6.7+21
   video_player: ^1.0.1
   flutter_typeahead: ^2.0.0
+  geoflutterfire: ^2.2.1
 
   # UI
   modal_bottom_sheet: ^1.0.0+1
@@ -51,6 +54,9 @@ dependencies:
   step_progress_indicator: ^0.2.5+8
   flutter_swiper: ^1.1.6
   circular_menu: ^1.1.2
+  country_code_picker: ^1.7.0
+  material_floating_search_bar: ^0.2.6
+  motion_widget: ^1.0.2
 
   evolum_package:
     git:

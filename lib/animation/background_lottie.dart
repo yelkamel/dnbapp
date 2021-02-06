@@ -1,4 +1,4 @@
-import 'package:dnbapp/crossapp/lottie_animated.dart';
+import 'package:dnbapp/application/common/lottie_animated.dart';
 import 'package:flutter/cupertino.dart';
 
 class BackgroundLottie extends StatelessWidget {

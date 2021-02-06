@@ -9,9 +9,10 @@ import 'user_controller.dart';
 
 class AuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
-
+  RxBool loading = false.obs;
   Rx<User> _firebaseUser = Rx<User>();
   User get user => _firebaseUser.value;
+  RxBool isSignUp = false.obs;
 
   @override
   onInit() {
@@ -24,7 +25,7 @@ class AuthController extends GetxController {
     final userFirestore = await Database().getUserById(userCredential.user.uid);
     print("===> Get User Firestore $userFirestore");
     if (userFirestore == null) {
-      Get.toNamed("/onboarding");
+      isSignUp.value = true;
       UserModel _user = UserModel(
         id: userCredential.user.uid,
         name: userCredential.user.displayName,
@@ -40,6 +41,8 @@ class AuthController extends GetxController {
 
   Future<bool> fbLogin() async {
     try {
+      loading.value = true;
+
       // by default the login method has the next permissions ['email','public_profile']
       AccessToken accessToken = await FacebookAuth.instance.login();
       final userData = await FacebookAuth.instance.getUserData();
@@ -66,6 +69,8 @@ class AuthController extends GetxController {
           break;
       }
       return false;
+    } finally {
+      loading.value = false;
     }
   }
 
@@ -76,6 +81,7 @@ class AuthController extends GetxController {
 
   Future<void> logByEmailAndPassword() async {
     try {
+      loading.value = true;
       final Map<String, String> emailPAssword =
           await Get.dialog(EmailLoginDialog());
 
@@ -90,6 +96,7 @@ class AuthController extends GetxController {
       }
 
       await createOrGetUser(userCredential, pp: null);
+      loading.value = false;
     } catch (e) {
       Get.snackbar(
         "Error signing out",

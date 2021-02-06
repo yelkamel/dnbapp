@@ -1,9 +1,6 @@
 import 'package:dnbapp/application/post/post_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:animations/animations.dart';
-
-import 'dnb_button.dart';
 
 class DnbAddPost extends StatelessWidget {
   const DnbAddPost({Key key}) : super(key: key);

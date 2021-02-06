@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:geoflutterfire/geoflutterfire.dart';
 
 import '../utils.dart';
 
@@ -18,6 +20,8 @@ class PostModel {
   DateTime createdDate;
   String type;
   int views;
+  @JsonKey(toJson: countryCodeToJson, fromJson: countryCodeFromJson)
+  CountryCode country;
 
   PostModel({
     this.id,
@@ -26,6 +30,7 @@ class PostModel {
     this.createdDate,
     this.type,
     this.views,
+    this.country,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> data) =>

@@ -7,17 +7,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-const CameraPosition _kLake =
-    CameraPosition(target: LatLng(50.0874654, 14.4212535), zoom: 4);
+Map<String, CameraPosition> tabs = {
+  "FR": CameraPosition(target: LatLng(50.0874654, 14.4212535), zoom: 4),
+  "PT": CameraPosition(target: LatLng(40.0332629, -7.8896263), zoom: 4),
+  "DE": CameraPosition(target: LatLng(52.5001698, 5.7480821), zoom: 4)
+};
 
 class WorldState extends GetxController {
   RxList<PostModel> posts = <PostModel>[].obs;
   GoogleMapController mapController;
+  RxString status = 'close'.obs;
+  Rx<PostModel> selectedPost = PostModel().obs;
+  bool get isClose => status.value == "close";
 
   @override
   void onInit() {
     final user = Get.find<UserController>().user;
     posts.bindStream(Database().userPostStream(user.id));
+    once(status, (_) {
+      selectedPost.value = posts.last;
+    });
+
     super.onInit();
   }
 
@@ -34,8 +44,20 @@ class WorldState extends GetxController {
     update();
   }
 
-  Future<void> goToTheLake() async {
-    mapController.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  Future<void> goNext() async {
+    final index = posts.indexWhere((p) => p.id == selectedPost.value.id);
+
+    if (index < posts.length - 1) {
+      selectedPost.value = posts[index + 1];
+    } else {
+      selectedPost.value = posts[0];
+    }
+    updateCameraPosition();
+  }
+
+  void updateCameraPosition() {
+    mapController.animateCamera(
+        CameraUpdate.newCameraPosition(tabs[selectedPost.value.country.code]));
   }
 
   @override

@@ -11,8 +11,6 @@ class UserController extends GetxController {
   Rx<UserModel> _userModel = UserModel().obs;
   UserController(this.uid);
 
-  bool radioStarted = false;
-
   UserModel get user => _userModel.value;
   set user(UserModel value) => this._userModel.value = value;
 
@@ -21,10 +19,9 @@ class UserController extends GetxController {
     super.onInit();
     _userModel.bindStream(Database().userStream(uid));
 
-    ever<UserModel>(_userModel, (_) {
-      if (_.badge?.id != null && !radioStarted) {
+    once<UserModel>(_userModel, (_) {
+      if (_.badge?.id != null) {
         Get.find<RadioController>().start();
-        radioStarted = true;
       }
     });
   }

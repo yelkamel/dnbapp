@@ -2,7 +2,7 @@ import 'package:dnbapp/animation/bullebackground.dart';
 import 'package:dnbapp/application/container/dnb_card.dart';
 import 'package:dnbapp/application/container/dnb_textinput.dart';
 import 'package:dnbapp/controller/user_controller.dart';
-import 'package:dnbapp/crossapp/glass_container.dart';
+import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:dnbapp/service/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -49,6 +49,7 @@ class ProfilEditScreen extends HookWidget {
                             text: user.name,
                             hintText: 'Add your name 😚',
                             label: 'Name',
+                            initText: user.name,
                             onSubmitted: (name) {
                               Database().updateUser(user.id, {"name": name});
                             },

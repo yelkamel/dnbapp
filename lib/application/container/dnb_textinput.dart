@@ -6,6 +6,7 @@ class DnbTextInput extends HookWidget {
   final String text;
   final String label;
   final String hintText;
+  final String initText;
   final bool obscureText;
 
   final void Function(String) onChanged;
@@ -17,12 +18,13 @@ class DnbTextInput extends HookWidget {
     this.hintText,
     this.onChanged,
     this.onSubmitted,
+    this.initText,
     this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController(text: text);
+    final controller = useTextEditingController(text: initText ?? "");
 
     return SizedBox(
       height: 80,

@@ -1,4 +1,5 @@
 import 'package:dnbapp/application/container/dnb_button.dart';
+import 'package:dnbapp/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -135,7 +136,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               style: style.copyWith(color: Colors.black, fontSize: 26),
             ),
             style: NeumorphicStyle(color: Color(0xffDDDDDD)),
-            onPressed: () => Get.back(),
+            onPressed: () {
+              Get.find<AuthController>().isSignUp.value = false;
+            },
           )
         ],
       ),

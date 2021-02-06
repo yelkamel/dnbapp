@@ -12,8 +12,8 @@ class BulleBackground extends StatefulWidget {
     Key key,
     @required this.child,
     this.color,
-    this.maxSizeBubble = 20,
-    this.nbOfBubble = 20,
+    this.maxSizeBubble = 30,
+    this.nbOfBubble = 10,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() {

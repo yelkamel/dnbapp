@@ -9,26 +9,12 @@ class ProfilPicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final user = Get.find<UserController>().user;
+    return Obx(
+      () {
+        final user = Get.find<UserController>().user;
 
-      if (user.pp == null) {
         return DnbUserPicture(uid: user.id, size: size);
-      }
-
-      return Container(
-        height: size,
-        width: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(width: 4, color: Theme.of(context).accentColor),
-        ),
-        child: user.pp != null
-            ? ClipOval(
-                child: Image.network(user.pp),
-              )
-            : Container(),
-      );
-    });
+      },
+    );
   }
 }

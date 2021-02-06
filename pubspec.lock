@@ -246,6 +246,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
+  country_code_picker:
+    dependency: "direct main"
+    description:
+      name: country_code_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.7.0"
   crypto:
     dependency: transitive
     description:
@@ -290,6 +297,20 @@ packages:
       url: "https://github.com/EvolumOU/evolum_package"
     source: git
     version: "0.0.1"
+  extended_image:
+    dependency: "direct main"
+    description:
+      name: extended_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.0"
+  extended_image_library:
+    dependency: transitive
+    description:
+      name: extended_image_library
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.1"
   fake_async:
     dependency: transitive
     description:
@@ -515,6 +536,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.1+4"
+  geoflutterfire:
+    dependency: "direct main"
+    description:
+      name: geoflutterfire
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.1"
   get:
     dependency: "direct main"
     description:
@@ -571,6 +599,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.2"
+  http_client_helper:
+    dependency: transitive
+    description:
+      name: http_client_helper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   http_multi_server:
     dependency: transitive
     description:
@@ -585,6 +620,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+  i18n:
+    dependency: "direct main"
+    description:
+      name: i18n
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   image:
     dependency: transitive
     description:
@@ -711,6 +753,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.10-nullsafety.1"
+  material_floating_search_bar:
+    dependency: "direct main"
+    description:
+      name: material_floating_search_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.6"
   matrix4_transform:
     dependency: transitive
     description:
@@ -739,6 +788,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0+1"
+  motion_widget:
+    dependency: "direct main"
+    description:
+      name: motion_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   nested:
     dependency: transitive
     description:
@@ -879,6 +935,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.7"
+  quick_log:
+    dependency: transitive
+    description:
+      name: quick_log
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   quiver:
     dependency: transitive
     description:
@@ -892,7 +955,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.25.0"
+    version: "0.24.1"
   sa_v1_migration:
     dependency: transitive
     description:
