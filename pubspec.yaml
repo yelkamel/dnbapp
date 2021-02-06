@@ -34,6 +34,7 @@ dependencies:
   video_player: ^1.0.1
   flutter_typeahead: ^2.0.0
   geoflutterfire: ^2.2.1
+  google_map_location_picker: ^4.1.6
 
   # UI
   modal_bottom_sheet: ^1.0.0+1

@@ -15,6 +15,7 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
     type: json['type'] as String,
     views: json['views'] as int,
     country: countryCodeFromJson(json['country'] as Map<String, dynamic>),
+    latlng: latlngFromJson(json['latlng'] as GeoPoint),
   )
     ..producer = json['producer'] as String
     ..trackName = json['trackName'] as String;
@@ -30,4 +31,5 @@ Map<String, dynamic> _$PostModelToJson(PostModel instance) => <String, dynamic>{
       'type': instance.type,
       'views': instance.views,
       'country': countryCodeToJson(instance.country),
+      'latlng': latlngToJson(instance.latlng),
     };

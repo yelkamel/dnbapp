@@ -1,9 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:dnbapp/application/container/dnb_button.dart';
-import 'package:dnbapp/application/container/dnb_textinput.dart';
+
 import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_map_location_picker/google_map_location_picker.dart';
 
 import '../../post_state.dart';
 
@@ -27,32 +26,50 @@ class PostLocationStep extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle2,
               ),
             ),
-            CountryCodePicker(
-              onChanged: (value) {
-                state.post.country = value;
-                state.hideNext.value = false;
-              },
-              showCountryOnly: true,
-              initialSelection: "fr",
-              showOnlyCountryWhenClosed: true,
-              alignLeft: false,
-              backgroundColor: Colors.transparent,
-              barrierColor: Colors.black,
-              boxDecoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor,
-                borderRadius: BorderRadius.circular(30),
+            RaisedButton(
+              onPressed: () {},
+              child: CountryCodePicker(
+                onChanged: (value) {
+                  state.post.country = value;
+                  state.hideNext.value = false;
+                },
+                showCountryOnly: true,
+                initialSelection: "fr",
+                showOnlyCountryWhenClosed: true,
+                alignLeft: false,
+                backgroundColor: Colors.transparent,
+                barrierColor: Colors.black,
+                boxDecoration: BoxDecoration(
+                  color: Theme.of(context).backgroundColor,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                closeIcon: Icon(
+                  Icons.close,
+                  size: 30,
+                  color: Theme.of(context).dividerColor,
+                ),
+                padding: EdgeInsets.all(15),
+                textStyle: Theme.of(context)
+                    .textTheme
+                    .subtitle2
+                    .copyWith(color: Colors.black),
+                dialogTextStyle: Theme.of(context).textTheme.bodyText1,
+                dialogBackgroundColor: Colors.transparent,
+                favorite: ['fr', 'cz', 'be', 'de', 'nl', 'ru'],
               ),
-              closeIcon: Icon(
-                Icons.close,
-                size: 30,
-                color: Theme.of(context).dividerColor,
-              ),
-              padding: EdgeInsets.all(15),
-              textStyle: Theme.of(context).textTheme.subtitle1,
-              dialogTextStyle: Theme.of(context).textTheme.bodyText1,
-              dialogBackgroundColor: Colors.transparent,
-              favorite: ['fr', 'cz', 'be', 'de', 'nl', 'ru'],
             ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                "Where do you want this video be show in the wolrd map ?",
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+            ),
+            RaisedButton(
+              onPressed: state.pickerPostLocation,
+              child: Text("Pick a location"),
+            ),
+            SizedBox(height: 10),
           ],
         ),
       ),

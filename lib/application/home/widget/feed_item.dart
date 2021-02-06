@@ -20,7 +20,7 @@ class FeedItem extends StatelessWidget {
         tilePadding: EdgeInsets.only(right: 10),
         title: DnbPostInfo(post: post),
         children: [
-          SizedBox(height: 200, child: FeedVideo(post: post)),
+          SizedBox(height: 200, child: FeedVideo( post)),
         ],
       ),
     );

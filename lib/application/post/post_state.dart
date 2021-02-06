@@ -9,8 +9,12 @@ import 'package:dnbapp/service/database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:google_map_location_picker/google_map_location_picker.dart';
+
+import '../../utils.dart';
 
 class PostState extends GetxController {
   File file;
@@ -24,7 +28,7 @@ class PostState extends GetxController {
     views: 0,
     country: CountryCode.fromCode("FR"),
   );
-
+  String style;
   SwiperController controller = SwiperController();
 
   List<String> steplist = [
@@ -49,10 +53,11 @@ class PostState extends GetxController {
   String get currentStep => steplist[step.value];
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     // Get.find<RadioController>().pause();
     step.value = 0;
+    style = await getMapStyle();
   }
 
   Future getVideoToUpload() async {
@@ -92,6 +97,25 @@ class PostState extends GetxController {
     }
 
     await controller.previous();
+  }
+
+  Future pickerPostLocation() async {
+    Map<String, LatLng> tabs = {
+      "FR": LatLng(50.0874654, 14.4212535),
+      "PT": LatLng(40.0332629, -7.8896263),
+      "DE": LatLng(52.5001698, 5.7480821)
+    };
+    final apiKey = Platform.isIOS
+        ? "AIzaSyCW4VpMQJBavNd1i0dkc5gmUXt2tUW9JY8"
+        : "AIzaSyBbIAtzqOZ3uG_oYi2lXfXmi4NMjsGHNB8";
+    LocationResult result = await showLocationPicker(
+      Get.context,
+      apiKey,
+      automaticallyAnimateToCurrentLocation: false,
+      mapStylePath: 'assets/map/warriorz.json',
+      initialCenter: tabs[post.country.code],
+    );
+    post.latlng = result.latLng;
   }
 
   Future submitPost() async {

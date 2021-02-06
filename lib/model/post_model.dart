@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 
@@ -22,6 +23,8 @@ class PostModel {
   int views;
   @JsonKey(toJson: countryCodeToJson, fromJson: countryCodeFromJson)
   CountryCode country;
+  @JsonKey(toJson: latlngToJson, fromJson: latlngFromJson)
+  LatLng latlng;
 
   PostModel({
     this.id,
@@ -31,6 +34,7 @@ class PostModel {
     this.type,
     this.views,
     this.country,
+    this.latlng,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> data) =>

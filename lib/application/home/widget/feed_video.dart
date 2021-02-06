@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 class FeedVideo extends StatelessWidget {
   final PostModel post;
-  const FeedVideo({Key key, this.post}) : super(key: key);
+  const FeedVideo(this.post, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

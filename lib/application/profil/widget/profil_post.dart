@@ -25,7 +25,7 @@ class ProfilPost extends StatelessWidget {
                 ),
           ),
           children: [
-            SizedBox(height: 200, child: FeedVideo(post: post)),
+            SizedBox(height: 200, child: FeedVideo(post)),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:dnbapp/application/player/player_screen.dart';
 import 'package:dnbapp/application/post/post_screen.dart';
 import 'package:dnbapp/theme/base.dart';
 import 'package:flutter/material.dart';
