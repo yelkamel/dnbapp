@@ -41,7 +41,7 @@ class ProfilScreen extends HookWidget {
                   return DnbBadge(
                     onSelect: () => Get.toNamed("/edit"),
                     size: 40,
-                    badge: user.badge,
+                    badgeId: user.badgeId,
                   );
                 }),
               ],

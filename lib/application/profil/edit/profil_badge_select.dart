@@ -22,16 +22,16 @@ class BadgeSelectScreen extends HookWidget {
         children: [
           for (final badge in Get.find<RadioController>().badges)
             DnbSelectedContainer(
-              selected: user.badge?.id == badge.id,
+              selected: user.badgeId == badge.id,
               child: DnbBadge(
                 imageOnly: false,
                 onSelect: () async {
                   await Database().updateUser(user.id, {
-                    "badge": badge.toJson(),
+                    "badgeId": badge.id,
                   });
                   Get.find<RadioController>().start();
                 },
-                badge: badge,
+                badgeId: badge.id,
               ),
             ),
         ],

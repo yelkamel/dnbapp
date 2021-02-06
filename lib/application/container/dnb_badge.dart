@@ -1,14 +1,15 @@
-import 'package:dnbapp/model/badge_model.dart';
+import 'package:dnbapp/controller/radio_controller.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:get/get.dart';
 
 class DnbBadge extends StatelessWidget {
-  final BadgeModel badge;
+  final String badgeId;
   final Function onSelect;
   final bool imageOnly;
   final double size;
   const DnbBadge({
     Key key,
-    this.badge,
+    this.badgeId,
     this.onSelect,
     this.imageOnly = true,
     this.size = 50,
@@ -16,7 +17,7 @@ class DnbBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (badge == null) {
+    if (badgeId == null) {
       return RawMaterialButton(
         onPressed: onSelect,
         constraints: BoxConstraints(maxHeight: 50, maxWidth: 50),
@@ -32,6 +33,9 @@ class DnbBadge extends StatelessWidget {
         ),
       );
     }
+
+    final badge =
+        Get.find<RadioController>().badges.firstWhere((b) => b.id == badgeId);
     if (imageOnly) {
       return RawMaterialButton(
         onPressed: onSelect,

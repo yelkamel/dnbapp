@@ -30,15 +30,16 @@ class RadioController extends GetxController {
 
   Future<void> prepare() async {
     final user = Get.find<UserController>().user;
-    print("===> [Radio] Prepare: ${user.badge}");
-
+    print("===> [Radio] Prepare: ${user.badgeId}");
+    /*
     if (user.badge != null) {
       final url = CloudStorage().getRadioFor(user.badge.id);
       final duration = await _radio.setUrl(url);
       await _radio
           .seek(Duration(seconds: Random().nextInt(duration.inSeconds - 20)));
       Get.find<UserController>().snackRadioStarted();
-    }
+    } 
+    */
   }
 
   Future<void> play() async {

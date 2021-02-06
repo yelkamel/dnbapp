@@ -1,8 +1,28 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_code_picker/country_code.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+extension LaYouExtension<T> on List<T> {
+  T get oneRandom {
+    if (length == 1) return this[0];
+    return this[Random().nextInt(length - 1)];
+  }
+
+    List<T>  nRandom(int n) {
+    List<T> list = [];
+    for (var i = 0; i < n; i++) {
+      final index = Random().nextInt(length - 1);
+      list.add(this[index]);
+      removeAt(index);
+    }
+    return list;
+  }
+}
+
 
 DateTime dateTimefromJson(Timestamp date) {
   if (date == null) return DateTime.now();

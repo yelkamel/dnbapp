@@ -1,3 +1,4 @@
+import 'package:dnbapp/application/all/all_screen.dart';
 import 'package:dnbapp/application/container/dnb_badge.dart';
 import 'package:dnbapp/application/home/widget/feed.dart';
 import 'package:dnbapp/controller/radio_controller.dart';
@@ -65,7 +66,7 @@ class _RightTabState extends State<RightTab>
                 return DnbBadge(
                   imageOnly: false,
                   onSelect: () async {},
-                  badge: badge,
+                  badgeId: badge.id,
                 );
               }).toList(),
             ),
@@ -83,7 +84,7 @@ class _RightTabState extends State<RightTab>
           child: Column(
             children: [
               SizedBox(height: 60),
-              PostFeed(),
+              AllPosts(),
             ],
           ),
         ),

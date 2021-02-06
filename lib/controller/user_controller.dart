@@ -20,7 +20,7 @@ class UserController extends GetxController {
     _userModel.bindStream(Database().userStream(uid));
 
     once<UserModel>(_userModel, (_) {
-      if (_.badge?.id != null) {
+      if (_.badgeId != null) {
         Get.find<RadioController>().start();
       }
     });
@@ -38,8 +38,8 @@ class UserController extends GetxController {
 
   void snackRadioStarted() {
     Get.snackbar(
-      "Welcome  ${user.name}",
-      "You are listen to ${user.badge.name} radio",
+      "Welcome  ${user.name} 😁",
+      "Radio ID: ${user.badgeId}",
       colorText: Theme.of(Get.context).textTheme.bodyText1.color,
       borderColor: Theme.of(Get.context).primaryColor,
       borderWidth: 1,

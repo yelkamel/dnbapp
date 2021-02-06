@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:dnbapp/model/badge_model.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
@@ -20,9 +19,9 @@ class UserModel {
   DateTime createdDate;
   int nbpost;
   int xp;
-  BadgeModel badge;
   List<String> tresor;
   List<String> postIds;
+  String badgeId;
 
   UserModel({
     this.id,
@@ -30,7 +29,7 @@ class UserModel {
     this.name,
     this.pp,
     this.email,
-    this.badge,
+    this.badgeId,
     this.createdDate,
     this.nbpost = 0,
     this.xp = 0,
@@ -44,5 +43,5 @@ class UserModel {
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 
   @override
-  String toString() => 'UserModel{name: $name id: $id badge: $badge}';
+  String toString() => 'UserModel{name: $name id: $id badgeId: $badgeId}';
 }

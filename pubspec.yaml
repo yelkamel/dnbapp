@@ -58,6 +58,8 @@ dependencies:
   country_code_picker: ^1.7.0
   material_floating_search_bar: ^0.2.6
   motion_widget: ^1.0.2
+  animated_text: ^1.0.2
+  flip_card: ^0.4.4
 
   evolum_package:
     git:

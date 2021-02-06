@@ -1,6 +1,6 @@
 import 'package:dnbapp/animation/loading_animated.dart';
 import 'package:dnbapp/application/common/glass_container.dart';
-import 'package:dnbapp/application/container/dnb_post_info.dart';
+import 'package:dnbapp/application/container/dnb_post_info_row.dart';
 import 'package:dnbapp/application/world/world_map.dart';
 import 'package:dnbapp/application/world/world_state.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ class DnbWorld extends StatelessWidget {
             children: [
               state.posts.isEmpty
                   ? LoadingAnimated()
-                  : DnbPostInfo(post: state.selectedPost.value),
+                  : DnbPostInfoRow(post: state.selectedPost.value),
               Expanded(
                 child: Stack(
                   children: [

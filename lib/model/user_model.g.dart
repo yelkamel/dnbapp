@@ -13,9 +13,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     pp: json['pp'] as String,
     email: json['email'] as String,
-    badge: json['badge'] == null
-        ? null
-        : BadgeModel.fromJson(json['badge'] as Map<String, dynamic>),
+    badgeId: json['badgeId'] as String,
     createdDate: dateTimefromJson(json['createdDate'] as Timestamp),
     nbpost: json['nbpost'] as int,
     xp: json['xp'] as int,
@@ -33,7 +31,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'createdDate': dateTimetoJson(instance.createdDate),
       'nbpost': instance.nbpost,
       'xp': instance.xp,
-      'badge': instance.badge?.toJson(),
       'tresor': instance.tresor,
       'postIds': instance.postIds,
+      'badgeId': instance.badgeId,
     };

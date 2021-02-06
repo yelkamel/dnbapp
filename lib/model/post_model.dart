@@ -20,6 +20,7 @@ class PostModel {
   @JsonKey(toJson: dateTimetoJson, fromJson: dateTimefromJson)
   DateTime createdDate;
   String type;
+  String badgeId;
   int views;
   @JsonKey(toJson: countryCodeToJson, fromJson: countryCodeFromJson)
   CountryCode country;
@@ -35,6 +36,7 @@ class PostModel {
     this.views,
     this.country,
     this.latlng,
+    this.badgeId,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> data) =>

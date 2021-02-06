@@ -16,6 +16,7 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
     views: json['views'] as int,
     country: countryCodeFromJson(json['country'] as Map<String, dynamic>),
     latlng: latlngFromJson(json['latlng'] as GeoPoint),
+    badgeId: json['badgeId'] as String,
   )
     ..producer = json['producer'] as String
     ..trackName = json['trackName'] as String;
@@ -29,6 +30,7 @@ Map<String, dynamic> _$PostModelToJson(PostModel instance) => <String, dynamic>{
       'trackName': instance.trackName,
       'createdDate': dateTimetoJson(instance.createdDate),
       'type': instance.type,
+      'badgeId': instance.badgeId,
       'views': instance.views,
       'country': countryCodeToJson(instance.country),
       'latlng': latlngToJson(instance.latlng),
