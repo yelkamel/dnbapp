@@ -1,15 +1,20 @@
 import 'package:animated_text/animated_text.dart';
-import 'package:dnbapp/application/common/auto_size_text.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dnbapp/application/common/entrance_container.dart';
+import 'package:dnbapp/application/player/player_screen.dart';
 import 'package:dnbapp/model/post_model.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'dnb_play_post.dart';
 import 'dnb_user_picture.dart';
 
 class DnbPostInfoTile extends StatelessWidget {
   final PostModel post;
-  const DnbPostInfoTile({Key key, this.post}) : super(key: key);
+  final bool picture;
+  const DnbPostInfoTile({Key key, this.post, this.picture = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,62 +23,57 @@ class DnbPostInfoTile extends StatelessWidget {
         .subtitle1
         .copyWith(fontWeight: FontWeight.bold);
 
-    final listName = post.name.split(" ");
-
     return Stack(
       children: [
-        Align(
+        if (picture)
+          Align(
             alignment: Alignment.topLeft,
             child: Padding(
               padding: EdgeInsets.all(5),
               child: DnbUserPicture(uid: post.uid, size: 40),
-            )),
+            ),
+          ),
         Align(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: listName.length < 2
-                ? EntranceContainer(
-                    key: Key(post.id),
-                    delay: Duration(milliseconds: 500),
-                    child: AutoSizeText(
-                      post.name,
-                      style: style,
-                      key: Key(post.id),
-                    ),
-                  )
-                : AnimatedText(
-                    alignment: Alignment.center,
-                    speed: Duration(milliseconds: 1000),
-                    controller: AnimatedTextController.loop,
-                    displayTime: Duration(milliseconds: 1000),
-                    wordList: listName,
-                    textStyle: style,
-                    onAnimate: (index) {
-                      // print("Animating index:" + index.toString());
-                    },
-                    onFinished: () {
-                      // print("Animtion finished");
-                    },
-                  ),
+          alignment: Alignment.topRight,
+          child: DnbPlayPost(
+            post,
+            size: 40,
+            onPress: () {},
           ),
         ),
         Align(
           alignment: Alignment.center,
-          child: EntranceContainer(
-              child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 70),
-              Text(
-                post.trackName,
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle2
-                    .copyWith(fontSize: 12),
-              ),
-            ],
-          )),
+          child: Padding(
+              padding: const EdgeInsets.only(top: 20, left: 8.0, right: 8.0),
+              child: EntranceContainer(
+                key: Key(post.id),
+                delay: Duration(milliseconds: 500),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AutoSizeText(
+                      post.name,
+                      style: style,
+                      maxLines: 3,
+                      textAlign: TextAlign.center,
+                      key: Key(post.id),
+                    ),
+                    SizedBox(height: 15),
+                    EntranceContainer(
+                      delay: Duration(milliseconds: 800),
+                      child: AutoSizeText(
+                        post.trackName,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle2
+                            .copyWith(fontSize: 13),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
         ),
       ],
     );

@@ -11,7 +11,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../widget/profil_picture.dart';
+import '../widget/picture.dart';
 
 class ProfilEditPicture extends StatefulWidget {
   const ProfilEditPicture({Key key}) : super(key: key);

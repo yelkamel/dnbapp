@@ -99,6 +99,12 @@ final ThemeData baseTheme = ThemeData(
     color: BaseColors.background,
     elevation: 0,
   ),
+  buttonTheme: ButtonThemeData(
+    buttonColor: BaseColors.accent1,
+    shape: ContinuousRectangleBorder(
+      borderRadius: BorderRadius.circular(50.0),
+    ),
+  ),
   appBarTheme: AppBarTheme(
     elevation: 0,
     color: Colors.transparent,

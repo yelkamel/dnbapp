@@ -3,8 +3,6 @@ import 'package:dnbapp/application/container/dnb_post_info_row.dart';
 import 'package:dnbapp/model/post_model.dart';
 import 'package:flutter/material.dart';
 
-import 'feed_video.dart';
-
 class FeedItem extends StatelessWidget {
   final PostModel post;
   const FeedItem({
@@ -16,7 +14,7 @@ class FeedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassContainer(
       blur: 10,
-      child: DnbPostInfoRow(post: post),
+      child: DnbPostInfoRow(post),
     );
   }
 }

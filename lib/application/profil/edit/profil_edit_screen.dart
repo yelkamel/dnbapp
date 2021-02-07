@@ -1,6 +1,7 @@
 import 'package:dnbapp/animation/bullebackground.dart';
 import 'package:dnbapp/application/container/dnb_card.dart';
 import 'package:dnbapp/application/container/dnb_textinput.dart';
+import 'package:dnbapp/application/menu/drawer_menu.dart';
 import 'package:dnbapp/controller/user_controller.dart';
 import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:dnbapp/service/database.dart';
@@ -15,65 +16,77 @@ import 'profil_edit_picture.dart';
 
 class ProfilEditScreen extends HookWidget {
   const ProfilEditScreen({Key key}) : super(key: key);
+  Widget buildBackButton() {
+    return IconButton(
+      icon: Icon(Icons.arrow_forward_ios,
+          color: Theme.of(Get.context).secondaryHeaderColor),
+      onPressed: Get.back,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final user = Get.find<UserController>().user;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Edit Profil",
-          style: Theme.of(context).textTheme.subtitle1,
+    return DrawerMenu(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            "Edit Profil",
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          iconTheme:
+              IconThemeData(color: Theme.of(context).textTheme.subtitle1.color),
+          automaticallyImplyLeading: false,
+          actions: [buildBackButton()],
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme:
-            IconThemeData(color: Theme.of(context).textTheme.subtitle1.color),
-      ),
-      body: BulleBackground(
-        color: Theme.of(context).primaryColor,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.85,
-              child: Column(
-                children: [
-                  GlassContainer(
-                    child: Row(
-                      children: [
-                        ProfilEditPicture(),
-                        Expanded(
-                          child: DnbTextInput(
-                            text: user.name,
-                            hintText: 'Add your name 😚',
-                            label: 'Name',
-                            initText: user.name,
-                            onSubmitted: (name) {
-                              Database().updateUser(user.id, {"name": name});
-                            },
-                          ),
-                        )
-                      ],
+        body: BulleBackground(
+          color: Theme.of(context).primaryColor,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                child: Column(
+                  children: [
+                    GlassContainer(
+                      child: Row(
+                        children: [
+                          ProfilEditPicture(),
+                          Expanded(
+                            child: DnbTextInput(
+                              text: user.name,
+                              hintText: 'Add your name 😚',
+                              label: 'Name',
+                              initText: user.name,
+                              onSubmitted: (name) {
+                                Database().updateUser(user.id, {"name": name});
+                              },
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  GlassContainer(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Select your badge",
-                            style: Theme.of(context).textTheme.subtitle1,
+                    SizedBox(height: 20),
+                    GlassContainer(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              "Select your badge",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
                           ),
-                        ),
-                        BadgeSelectScreen(),
-                      ],
-                    ),
-                  )
-                ],
+                          BadgeSelectScreen(),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

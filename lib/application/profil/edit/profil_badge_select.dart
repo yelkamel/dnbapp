@@ -15,27 +15,27 @@ class BadgeSelectScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final user = Get.find<UserController>().user;
+    final user = Get.find<UserController>().user;
+    final badgeId = useState(user.badgeId);
 
-      return Column(
-        children: [
-          for (final badge in Get.find<RadioController>().badges)
-            DnbSelectedContainer(
-              selected: user.badgeId == badge.id,
-              child: DnbBadge(
-                imageOnly: false,
-                onSelect: () async {
-                  await Database().updateUser(user.id, {
-                    "badgeId": badge.id,
-                  });
-                  Get.find<RadioController>().start();
-                },
-                badgeId: badge.id,
-              ),
+    return Column(
+      children: [
+        for (final badge in Get.find<RadioController>().badges)
+          DnbSelectedContainer(
+            selected: badgeId.value == badge.id,
+            child: DnbBadge(
+              imageOnly: false,
+              onSelect: () async {
+                await Database().updateUser(user.id, {
+                  "badgeId": badge.id,
+                });
+                Get.find<RadioController>().start();
+                badgeId.value = badge.id;
+              },
+              badgeId: badge.id,
             ),
-        ],
-      );
-    });
+          ),
+      ],
+    );
   }
 }

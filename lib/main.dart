@@ -1,5 +1,6 @@
 import 'package:dnbapp/application/player/player_screen.dart';
 import 'package:dnbapp/application/post/post_screen.dart';
+import 'package:dnbapp/application/profil/profil_screen.dart';
 import 'package:dnbapp/theme/base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,11 +16,6 @@ import 'locator.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  ///Orientation on page started
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
   await setupLocator();
 
   runApp(MainApp());
@@ -56,6 +52,11 @@ class MainApp extends StatelessWidget {
         GetPage(
           name: '/post',
           page: () => const PostScreen(),
+          transition: Transition.downToUp,
+        ),
+        GetPage(
+          name: '/profil',
+          page: () => const ProfilScreen(),
           transition: Transition.downToUp,
         ),
       ],

@@ -108,9 +108,9 @@ class AuthController extends GetxController {
 
   Future<void> signOut() async {
     try {
+      await FacebookAuth.instance.logOut();
       await _auth.signOut();
       Get.find<UserController>().clear();
-      await FacebookAuth.instance.logOut();
     } catch (e) {
       Get.snackbar(
         "Error signing out",

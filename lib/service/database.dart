@@ -43,6 +43,16 @@ class Database {
     }
   }
 
+  Stream<List<UserModel>> allUserStream() {
+    return service.collection("user").snapshots().map((QuerySnapshot query) {
+      List<UserModel> retVal = [];
+      query.docs.forEach((element) {
+        retVal.add(UserModel.fromJson({...element.data(), "id": element.id}));
+      });
+      return retVal;
+    });
+  }
+
   Stream<List<PostModel>> userPostStream(String uid) {
     return service
         .collection("post")
