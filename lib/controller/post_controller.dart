@@ -3,10 +3,9 @@ import 'package:dnbapp/service/database.dart';
 
 import 'package:get/get.dart';
 
-class AllPostState extends GetxController {
+class PostController extends GetxController {
   RxList<PostModel> allPosts = <PostModel>[].obs;
   RxBool loading = true.obs;
-  RxList<PostModel> postsToShow = <PostModel>[].obs;
 
   @override
   void onInit() async {
@@ -14,13 +13,8 @@ class AllPostState extends GetxController {
     allPosts.bindStream(Database().postStream());
 
     ever(allPosts, (_) {
-      postsToShow = allPosts;
       loading.value = false;
     });
-  }
-
-  void randomize() {
-    postsToShow.shuffle();
   }
 
   @override

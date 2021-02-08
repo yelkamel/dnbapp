@@ -31,11 +31,6 @@ class UserController extends GetxController {
     _userModel.value = UserModel();
   }
 
-  Future<void> updateProfilPicture() async {
-    final urlPP = await CloudStorage().getPictureFor(user.id);
-    await Database().updateUser(user.id, {"pp": urlPP});
-    _userModel.update((_) => _.pp = urlPP);
-  }
 
   void snackRadioStarted() {
     Get.snackbar(

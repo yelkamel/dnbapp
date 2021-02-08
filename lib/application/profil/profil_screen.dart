@@ -25,7 +25,7 @@ class ProfilScreen extends HookWidget {
 
     final tabController = useTabController(initialLength: 3, initialIndex: 1);
 
-    return GetX<ProfilState>(
+    return GetBuilder<ProfilState>(
       init: ProfilState(
         isCurrentUser ? Get.find<UserController>().user : user,
         currentUser: isCurrentUser,

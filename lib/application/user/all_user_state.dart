@@ -13,7 +13,6 @@ class AllUserState extends GetxController {
     allUser.bindStream(Database().allUserStream());
     ever(allUser, (_) {
       loading.value = false;
-      allUser.shuffle();
     });
   }
 

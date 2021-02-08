@@ -1,3 +1,4 @@
+import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:dnbapp/controller/radio_controller.dart';
 import 'package:dnbapp/application/common/lottie_animated.dart';
 import 'package:flutter/material.dart';
@@ -13,26 +14,27 @@ class RadioContainer extends GetWidget<RadioController> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: RadioPlayPauseTouchable(
-        child: SizedBox(
-          height: 40,
-          width: 40,
-          child: Stack(
-            children: [
-              Opacity(
-                opacity: 0.4,
-                child: LottieAnimated(
-                  url: "assets/lottie/radio.json",
-                  repeat: false,
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      GlassContainer(
+          margin: EdgeInsets.all(20),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.6,
+            height: 70,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RawMaterialButton(
+                  child: RadioPlayStatus(),
+                  onPressed: controller.playpause,
+                  constraints: BoxConstraints(maxWidth: 50),
                 ),
-              ),
-              Align(alignment: Alignment.center, child: RadioPlayStatus()),
-            ],
-          ),
-        ),
-      ),
-    );
+                LottieAnimated(
+                  url: "assets/lottie/radio.json",
+                  repeat: true,
+                )
+              ],
+            ),
+          )),
+    ]);
   }
 }

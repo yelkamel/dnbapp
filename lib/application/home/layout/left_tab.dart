@@ -21,25 +21,6 @@ class _LeftTabState extends State<LeftTab> with AutomaticKeepAliveClientMixin {
   bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        AllUserList(),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: RaisedButton(
-              shape: CircleBorder(
-                side:
-                    BorderSide(width: 6, color: Theme.of(context).primaryColor),
-              ),
-              onPressed: () => Get.toNamed("/profil"),
-              child:
-                  DnbUserPicture(size: 60, uid: Get.find<UserController>().uid),
-            ),
-          ),
-        )
-      ],
-    );
+    return AllUserList();
   }
 }

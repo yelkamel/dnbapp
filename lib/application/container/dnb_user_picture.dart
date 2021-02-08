@@ -23,6 +23,7 @@ class DnbUserPicture extends StatelessWidget {
           icon: Icon(Icons.add_a_photo),
           onPressed: () {},
         );
+
       return ClipOval(
         child: ExtendedImage.network(
           Get.find<UserController>().userPicture,

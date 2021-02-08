@@ -9,29 +9,21 @@ part of 'user_model.dart';
 UserModel _$UserModelFromJson(Map<String, dynamic> json) {
   return UserModel(
     id: json['id'] as String,
-    level: json['level'] as String,
     name: json['name'] as String,
-    pp: json['pp'] as String,
     email: json['email'] as String,
     badgeId: json['badgeId'] as String,
     createdDate: dateTimefromJson(json['createdDate'] as Timestamp),
-    nbpost: json['nbpost'] as int,
-    xp: json['xp'] as int,
-    tresor: (json['tresor'] as List)?.map((e) => e as String)?.toList(),
-    postIds: (json['postIds'] as List)?.map((e) => e as String)?.toList(),
+    saved: (json['saved'] as List)?.map((e) => e as String)?.toList(),
+    posts: (json['posts'] as List)?.map((e) => e as String)?.toList(),
   );
 }
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'id': instance.id,
-      'level': instance.level,
       'name': instance.name,
-      'pp': instance.pp,
       'email': instance.email,
       'createdDate': dateTimetoJson(instance.createdDate),
-      'nbpost': instance.nbpost,
-      'xp': instance.xp,
-      'tresor': instance.tresor,
-      'postIds': instance.postIds,
+      'saved': instance.saved,
+      'posts': instance.posts,
       'badgeId': instance.badgeId,
     };

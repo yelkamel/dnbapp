@@ -1,4 +1,3 @@
-import 'package:dnbapp/application/all/all_post_state.dart';
 import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:dnbapp/application/container/dnb_badge.dart';
 import 'package:dnbapp/application/player/player_screen.dart';
@@ -9,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
+import '../random_post_state.dart';
+
 class PostCard extends HookWidget {
   final PostModel post;
   const PostCard(this.post, {Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class PostCard extends HookWidget {
   Widget build(BuildContext context) {
     final open = useState(false);
     return Obx(() {
-      final state = Get.find<AllPostState>();
+      final state = Get.find<RandomPostState>();
       final index = state.postsToShow.indexWhere((p) => p.id == post.id);
 
       return SizedBox(

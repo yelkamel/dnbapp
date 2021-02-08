@@ -8,7 +8,6 @@ class AuthBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<AuthController>(AuthController(), permanent: true);
-    Get.put<RadioController>(RadioController(), permanent: true);
     Get.put<UploadController>(UploadController(), permanent: true);
   }
 }

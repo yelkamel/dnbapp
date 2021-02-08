@@ -1,4 +1,3 @@
-import 'package:dnbapp/controller/user_controller.dart';
 import 'package:dnbapp/model/post_model.dart';
 import 'package:dnbapp/model/user_model.dart';
 import 'package:dnbapp/service/database.dart';

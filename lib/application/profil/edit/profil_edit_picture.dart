@@ -1,17 +1,14 @@
 import 'dart:io';
 
-import 'package:dnbapp/application/container/dnb_card.dart';
 import 'package:dnbapp/application/container/dnb_icon.dart';
+import 'package:dnbapp/application/container/dnb_user_picture.dart';
 import 'package:dnbapp/controller/user_controller.dart';
-import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:dnbapp/service/cloud_storage.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../widget/picture.dart';
 
 class ProfilEditPicture extends StatefulWidget {
   const ProfilEditPicture({Key key}) : super(key: key);
@@ -40,7 +37,7 @@ class _ProfilEditPictureState extends State<ProfilEditPicture> {
     });
 
     _uploadTask.whenComplete(() {
-      Get.find<UserController>().updateProfilPicture();
+      Get.find<UserController>().update();
       setState(() {
         _image = null;
         _uploadTask = null;
@@ -54,7 +51,7 @@ class _ProfilEditPictureState extends State<ProfilEditPicture> {
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: [
-          ProfilPicture(size: 80),
+          DnbUserPicture(uid: Get.find<UserController>().uid, size: 60),
           Positioned(
             right: -10,
             top: -10,

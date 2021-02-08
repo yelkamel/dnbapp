@@ -30,7 +30,6 @@ class AuthController extends GetxController {
         id: userCredential.user.uid,
         name: userCredential.user.displayName,
         email: userCredential.user.email,
-        pp: pp,
       );
       print("===> User To Create $_user");
       await Database().createNewUser(_user);
@@ -110,6 +109,8 @@ class AuthController extends GetxController {
     try {
       await FacebookAuth.instance.logOut();
       await _auth.signOut();
+      Get.offAllNamed('/');
+
       Get.find<UserController>().clear();
     } catch (e) {
       Get.snackbar(

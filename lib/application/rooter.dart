@@ -1,6 +1,8 @@
 import 'package:dnbapp/application/login/login_screen.dart';
 import 'package:dnbapp/application/login/onboarding_screen.dart';
 import 'package:dnbapp/controller/auth_controller.dart';
+import 'package:dnbapp/controller/post_controller.dart';
+import 'package:dnbapp/controller/radio_controller.dart';
 import 'package:dnbapp/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +16,9 @@ class Rooter extends StatelessWidget {
     if (authCtrl.user?.uid == null) return LoginScreen();
     if (authCtrl.isSignUp.value) return OnBoardingScreen();
     Get.put<UserController>(UserController(authCtrl.user?.uid));
+    Get.put<RadioController>(RadioController(), permanent: true);
+    Get.put<PostController>(PostController(), permanent: true);
+
     return Home();
   }
 

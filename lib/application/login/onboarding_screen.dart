@@ -123,10 +123,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             style: style.copyWith(color: Colors.black87),
           ),
           Text(
-            "news feeds are showed by post date time",
-            style: style.copyWith(color: Colors.black87),
-          ),
-          Text(
             "So Enjoy and Thank You to be here ",
             style: style.copyWith(color: Colors.black87),
           ),

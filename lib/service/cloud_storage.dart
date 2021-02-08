@@ -53,7 +53,6 @@ class CloudStorage {
       final url = await ref.getDownloadURL();
       return url;
     } catch (e) {
-      Get.snackbar("Oups", "error getting Picture CloudStorage url");
       return null;
     }
   }

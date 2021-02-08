@@ -2,7 +2,7 @@ import 'package:dnbapp/animation/loading_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'all_post_state.dart';
+import 'random_post_state.dart';
 import 'widget/post_card.dart';
 
 class AllPost extends StatelessWidget {
@@ -10,8 +10,8 @@ class AllPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetX<AllPostState>(
-      init: AllPostState(),
+    return GetX<RandomPostState>(
+      init: RandomPostState(),
       builder: (state) => Expanded(
         child: AnimatedSwitcher(
           duration: Duration(milliseconds: 500),

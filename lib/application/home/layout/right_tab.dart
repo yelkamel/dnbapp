@@ -1,4 +1,4 @@
-import 'package:dnbapp/application/all/all_post.dart';
+import 'package:dnbapp/application/random/random_post.dart';
 
 import 'package:flutter/material.dart';
 

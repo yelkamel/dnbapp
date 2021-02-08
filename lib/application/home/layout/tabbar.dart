@@ -1,7 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flashy_tab_bar/flashy_tab_bar.dart';
 
 class BottomTabBar extends HookWidget {
   final TabController controller;
@@ -10,25 +10,17 @@ class BottomTabBar extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = useState(1);
-
-    return Container(
-      decoration: BoxDecoration(
-//          borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).accentColor,
-
-        border: Border(
-          top: BorderSide(color: Theme.of(context).primaryColor, width: 2),
-        ),
-      ),
+    return GlassContainer(
+      blur: 20,
+      margin: EdgeInsets.only(left: 30, right: 30, bottom: 10),
       child: SafeArea(
         child: TabBar(
+          physics: NeverScrollableScrollPhysics(),
           controller: controller,
           indicatorColor: Colors.transparent,
           indicatorSize: TabBarIndicatorSize.tab,
           unselectedLabelColor: Theme.of(context).primaryColor.withOpacity(0.6),
           indicator: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
             color: Theme.of(context).accentColor,
             boxShadow: [
               BoxShadow(
