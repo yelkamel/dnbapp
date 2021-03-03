@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dnbapp/application/common/glass_container.dart';
 import 'package:dnbapp/application/container/dnb_user_picture.dart';
+import 'package:dnbapp/application/profil/profil_screen.dart';
 import 'package:dnbapp/model/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class UserButton extends StatelessWidget {
   final UserModel user;
@@ -15,7 +15,7 @@ class UserButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.5,
       child: RawMaterialButton(
         onPressed: () {
-          Get.toNamed("/profil", arguments: user);
+          ProfilScreen.show(user);
         },
         child: GlassContainer(
           margin: EdgeInsets.all(10),

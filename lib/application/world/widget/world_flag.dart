@@ -1,6 +1,4 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dnbapp/model/post_model.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 class WorldFlag extends StatelessWidget {

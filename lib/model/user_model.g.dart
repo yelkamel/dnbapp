@@ -15,6 +15,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
     createdDate: dateTimefromJson(json['createdDate'] as Timestamp),
     saved: (json['saved'] as List)?.map((e) => e as String)?.toList(),
     posts: (json['posts'] as List)?.map((e) => e as String)?.toList(),
+    type: json['type'] as String,
+    status: json['status'] as String,
   );
 }
 
@@ -26,4 +28,6 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'saved': instance.saved,
       'posts': instance.posts,
       'badgeId': instance.badgeId,
+      'type': instance.type,
+      'status': instance.status,
     };

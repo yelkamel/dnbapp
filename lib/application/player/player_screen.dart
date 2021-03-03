@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import 'widget/saved_post_button.dart';
+
 class PlayerScreen extends StatelessWidget {
   final PostModel post;
   const PlayerScreen(this.post, {Key key}) : super(key: key);
@@ -26,7 +28,7 @@ class PlayerScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(post.name),
-        actions: [Icon(Icons.save)],
+        actions: [SavedPostButton(post: post)],
       ),
       body: Center(child: FeedVideo(post)),
     );

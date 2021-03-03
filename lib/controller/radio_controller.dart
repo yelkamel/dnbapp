@@ -1,8 +1,6 @@
-import 'dart:math';
 
 import 'package:dnbapp/controller/user_controller.dart';
 import 'package:dnbapp/model/badge_model.dart';
-import 'package:dnbapp/service/cloud_storage.dart';
 import 'package:dnbapp/service/database.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -20,26 +18,25 @@ class RadioController extends GetxController {
     _radio = AudioPlayer();
     playing.bindStream(_radio.playingStream);
     badges.bindStream(Database().badgeStream());
+    loading.value = false;
   }
 
   Future start() async {
     await prepare();
     await play();
-    loading.value = false;
   }
 
   Future<void> prepare() async {
     final user = Get.find<UserController>().user;
-    print("===> [Radio] Prepare: ${user.badgeId}");
-    /*
-    if (user.badge != null) {
-      final url = CloudStorage().getRadioFor(user.badge.id);
+    print("===> [Radio] Prepare: ${user.value.badgeId}");
+/*
+    if (user.badgeId != null) {
+      final url = CloudStorage().getRadioFor(user.badgeId);
       final duration = await _radio.setUrl(url);
       await _radio
           .seek(Duration(seconds: Random().nextInt(duration.inSeconds - 20)));
       Get.find<UserController>().snackRadioStarted();
-    } 
-    */
+    }*/
   }
 
   Future<void> play() async {

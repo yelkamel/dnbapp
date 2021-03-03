@@ -3,7 +3,7 @@ import 'package:dnbapp/model/post_model.dart';
 
 import 'package:get/get.dart';
 
-class RandomPostState extends GetxController {
+class PickPostState extends GetxController {
   RxList<PostModel> allPosts = <PostModel>[].obs;
   RxBool loading = true.obs;
   RxList<PostModel> postsToShow = <PostModel>[].obs;

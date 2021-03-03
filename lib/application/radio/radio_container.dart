@@ -1,4 +1,5 @@
 import 'package:dnbapp/application/common/glass_container.dart';
+import 'package:dnbapp/application/common/spreadshadow_container.dart';
 import 'package:dnbapp/controller/radio_controller.dart';
 import 'package:dnbapp/application/common/lottie_animated.dart';
 import 'package:flutter/material.dart';
@@ -14,27 +15,19 @@ class RadioContainer extends GetWidget<RadioController> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      GlassContainer(
-          margin: EdgeInsets.all(20),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.6,
-            height: 70,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RawMaterialButton(
-                  child: RadioPlayStatus(),
-                  onPressed: controller.playpause,
-                  constraints: BoxConstraints(maxWidth: 50),
-                ),
-                LottieAnimated(
-                  url: "assets/lottie/radio.json",
-                  repeat: true,
-                )
-              ],
-            ),
-          )),
-    ]);
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: SpreadShadowContainer(
+        spread: 10,
+        child: GlassContainer(
+          margin: EdgeInsets.all(0),
+          child: RawMaterialButton(
+            onPressed: controller.playpause,
+            constraints: BoxConstraints(maxWidth: 50),
+            child: RadioPlayStatus(),
+          ),
+        ),
+      ),
+    );
   }
 }

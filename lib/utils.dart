@@ -12,7 +12,7 @@ extension LaYouExtension<T> on List<T> {
     return this[Random().nextInt(length - 1)];
   }
 
-    List<T>  nRandom(int n) {
+  List<T> nRandom(int n) {
     List<T> list = [];
     for (var i = 0; i < n; i++) {
       final index = Random().nextInt(length - 1);
@@ -22,7 +22,6 @@ extension LaYouExtension<T> on List<T> {
     return list;
   }
 }
-
 
 DateTime dateTimefromJson(Timestamp date) {
   if (date == null) return DateTime.now();

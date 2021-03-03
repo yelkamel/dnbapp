@@ -11,9 +11,9 @@ class ProfilInfo extends StatelessWidget {
       final user = Get.find<UserController>().user;
 
       return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(user.name.capitalizeFirst.toString(),
+          Text(user.value.name.capitalizeFirst.toString(),
               style: Theme.of(context).textTheme.subtitle1),
         ],
       );

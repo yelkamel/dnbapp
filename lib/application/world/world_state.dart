@@ -15,14 +15,16 @@ class WorldState extends GetxController {
 
   @override
   void onInit() {
-    final user = Get.find<UserController>().user;
+    final user = Get.find<UserController>().user.value;
     posts.bindStream(Database().userPostStream(user.id));
     super.onInit();
   }
 
   @override
   void onReady() {
-    Get.snackbar("Hello", "Find some Dnb video in the world !");
+    Future.delayed(2.seconds, () {
+      Get.snackbar("Hello 🧐", "Find 5 daily video of today !");
+    });
     super.onReady();
   }
 

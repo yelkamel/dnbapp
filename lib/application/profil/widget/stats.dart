@@ -9,6 +9,7 @@ class ProfilInfoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Nb of post: 3'),
         ],

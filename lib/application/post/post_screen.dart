@@ -87,20 +87,15 @@ class _PostScreenState extends State<PostScreen> {
           leading: buildBackButton(state),
         ),
         floatingActionButton: buildProgresButton(state),
-        body: BulleBackground(
-          color: Theme.of(context).primaryColor,
-          nbOfBubble: 10,
-          maxSizeBubble: 30,
-          child: Swiper(
-            physics: NeverScrollableScrollPhysics(),
-            loop: false,
-            itemBuilder: (BuildContext context, int index) {
-              return buildContent(state, index);
-            },
-            itemCount: state.steplist.length,
-            controller: state.controller,
-            onIndexChanged: (i) => state.step.value = i,
-          ),
+        body: Swiper(
+          physics: NeverScrollableScrollPhysics(),
+          loop: false,
+          itemBuilder: (BuildContext context, int index) {
+            return buildContent(state, index);
+          },
+          itemCount: state.steplist.length,
+          controller: state.controller,
+          onIndexChanged: (i) => state.step.value = i,
         ),
       ),
     );

@@ -22,12 +22,19 @@ class RadioPlayStatus extends HookWidget {
       }
 
       if (radio.loading.value) {
-        return SizedBox(height: 25, width: 25, child: LoadingAnimated());
+        return SizedBox(
+          height: 25,
+          width: 25,
+          child: LoadingAnimated(
+            color: Theme.of(context).iconTheme.color,
+          ),
+        );
       }
 
       return AnimatedIcon(
         icon: AnimatedIcons.play_pause,
         progress: animatedController,
+        color: Theme.of(context).iconTheme.color,
       );
     });
   }

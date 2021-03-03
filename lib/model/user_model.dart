@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:dnbapp/model/post_model.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
@@ -19,6 +18,8 @@ class UserModel {
   List<String> saved;
   List<String> posts;
   String badgeId;
+  String type;
+  String status;
 
   UserModel({
     this.id,
@@ -28,6 +29,8 @@ class UserModel {
     this.createdDate,
     this.saved = const [],
     this.posts = const [],
+    this.type,
+    this.status,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> data) =>

@@ -38,7 +38,6 @@ class DnbPostInfoTile extends StatelessWidget {
           child: DnbPlayPost(
             post,
             size: 40,
-            onPress: () {},
           ),
         ),
         Align(

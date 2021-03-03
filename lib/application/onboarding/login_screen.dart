@@ -1,4 +1,3 @@
-import 'package:dnbapp/animation/loading_animated.dart';
 import 'package:dnbapp/controller/auth_controller.dart';
 import 'package:evolum_package/main.dart';
 import 'package:flutter/material.dart';

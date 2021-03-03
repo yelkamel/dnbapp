@@ -1,3 +1,5 @@
+import 'package:dnbapp/controller/post_controller.dart';
+import 'package:dnbapp/controller/radio_controller.dart';
 import 'package:dnbapp/dialog/email_login.dart';
 import 'package:dnbapp/model/user_model.dart';
 import 'package:dnbapp/service/database.dart';
@@ -18,23 +20,38 @@ class AuthController extends GetxController {
   onInit() {
     super.onInit();
     _firebaseUser.bindStream(_auth.authStateChanges());
+
+    ever<User>(_firebaseUser, (_) {
+      if (_.uid != null) {
+        Get.put<UserController>(UserController(_.uid), permanent: true);
+        Get.put<RadioController>(RadioController(), permanent: true);
+        Get.put<PostController>(PostController(), permanent: true);
+      }
+    });
   }
 
-  Future<void> createOrGetUser(UserCredential userCredential,
-      {String pp}) async {
+  Future<void> createOrGetUser(UserCredential userCredential) async {
+    loading.value = true;
+
     final userFirestore = await Database().getUserById(userCredential.user.uid);
     print("===> Get User Firestore $userFirestore");
+    Get.put<UserController>(UserController(userCredential.user.uid),
+        permanent: true);
+
     if (userFirestore == null) {
       isSignUp.value = true;
       UserModel _user = UserModel(
         id: userCredential.user.uid,
         name: userCredential.user.displayName,
         email: userCredential.user.email,
+        status: 'registration',
       );
       print("===> User To Create $_user");
-      await Database().createNewUser(_user);
+      await Database().saveUser(_user);
+      loading.value = false;
       return _user;
     }
+    loading.value = false;
     return userFirestore;
   }
 
@@ -49,10 +66,7 @@ class AuthController extends GetxController {
       final credential = FacebookAuthProvider.credential(accessToken.token);
 
       final userCredential = await _auth.signInWithCredential(credential);
-      await createOrGetUser(
-        userCredential,
-        pp: userData["picture"]["data"]["url"].toString(),
-      );
+      await createOrGetUser(userCredential);
       return true;
     } on FacebookAuthException catch (e) {
       switch (e.errorCode) {
@@ -94,7 +108,7 @@ class AuthController extends GetxController {
             email: emailPAssword["email"], password: emailPAssword["password"]);
       }
 
-      await createOrGetUser(userCredential, pp: null);
+      await createOrGetUser(userCredential);
       loading.value = false;
     } catch (e) {
       Get.snackbar(

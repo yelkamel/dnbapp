@@ -55,8 +55,8 @@ class PostState extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    // Get.find<RadioController>().pause();
     step.value = 0;
+    // Get.find<RadioController>().pause();
     style = await getMapStyle();
   }
 
@@ -72,13 +72,14 @@ class PostState extends GetxController {
     hideNext.value = false;
   }
 
-  void setField(String field, String value) {
-    if (field == "name") post.name = value.capitalizeFirst;
-    if (field == "producer") post.producer = value.capitalizeFirst;
-    if (field == "trackName") post.trackName = value.capitalizeFirst;
-  }
-
   void goNextStep() async {
+    if (currentStep == 'track') {
+      if (post.trackName == null || post.producer == null) {
+        Get.snackbar("fill it ", "please");
+        return;
+      }
+    }
+
     if (step.value == steplist.length - 1) {
       submitPost();
       return;
@@ -86,7 +87,6 @@ class PostState extends GetxController {
     await controller.next();
 
     if (currentStep == 'type') hideNext.value = true;
-    // if (currentStep == 'select') hideNext.value = true;
   }
 
   void goBackStep() async {
@@ -119,10 +119,11 @@ class PostState extends GetxController {
   }
 
   Future submitPost() async {
-    final userCtrl = Get.find<UserController>();
+    final user = Get.find<UserController>().user.value;
     debugPrint('===> [Upload] start');
     post.createdDate = DateTime.now();
-    post.uid = userCtrl.user.id;
+    post.uid = user.id;
+    post.badgeId = user.badgeId;
     final docRef = await Database().addPost(post);
     debugPrint("===> [Upload] Post ID: ${docRef.id}");
     Get.find<UploadController>().uploadVideoPost(docRef.id, file);

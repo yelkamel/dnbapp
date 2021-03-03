@@ -1,19 +1,19 @@
-import 'package:evolum_package/main.dart';
 import 'package:flutter/material.dart';
 
-class WorldContainer extends StatefulWidget {
+class SpreadShadowContainer extends StatefulWidget {
   final Widget child;
+  final Color backgroundColor;
+  final double spread;
 
-  WorldContainer({
-    Key key,
-    this.child,
-  }) : super(key: key);
+  SpreadShadowContainer(
+      {Key key, this.child, this.backgroundColor, this.spread = 15.0})
+      : super(key: key);
 
   @override
-  _WorldContainerState createState() => _WorldContainerState();
+  _SpreadShadowContainerState createState() => _SpreadShadowContainerState();
 }
 
-class _WorldContainerState extends State<WorldContainer>
+class _SpreadShadowContainerState extends State<SpreadShadowContainer>
     with TickerProviderStateMixin {
   AnimationController _animationController;
   Animation _animation;
@@ -23,10 +23,11 @@ class _WorldContainerState extends State<WorldContainer>
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 5));
     _animationController.repeat(reverse: true);
-    _animation = Tween(begin: 0.0, end: 15.0).animate(_animationController)
-      ..addListener(() {
-        setState(() {});
-      });
+    _animation =
+        Tween(begin: 0.0, end: widget.spread).animate(_animationController)
+          ..addListener(() {
+            setState(() {});
+          });
     super.initState();
   }
 
@@ -44,7 +45,12 @@ class _WorldContainerState extends State<WorldContainer>
           )
         ],
       ),
-      child: widget.child,
+      child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: widget.backgroundColor,
+          ),
+          child: widget.child),
     );
   }
 }

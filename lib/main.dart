@@ -2,16 +2,17 @@ import 'package:dnbapp/application/player/player_screen.dart';
 import 'package:dnbapp/application/post/post_screen.dart';
 import 'package:dnbapp/application/profil/profil_screen.dart';
 import 'package:dnbapp/theme/base.dart';
+import 'package:dnbapp/theme/warrioz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
-import 'application/login/onboarding_screen.dart';
 import 'application/profil/edit/profil_edit_screen.dart';
 import 'application/rooter.dart';
 import 'controller/bindings/auth_binding.dart';
 import 'locator.dart';
+import 'theme/zombiecats.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,17 +37,14 @@ class MainApp extends StatelessWidget {
       },
       title: 'Dnb APP',
       theme: baseTheme,
+      themeMode: ThemeMode.light,
+      darkTheme: baseTheme,
       home: const Rooter(),
       initialBinding: AuthBinding(),
       getPages: [
         GetPage(
           name: '/edit',
           page: () => const ProfilEditScreen(),
-          transition: Transition.rightToLeft,
-        ),
-        GetPage(
-          name: '/onboarding',
-          page: () => const OnBoardingScreen(),
           transition: Transition.rightToLeft,
         ),
         GetPage(

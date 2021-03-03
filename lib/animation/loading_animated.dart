@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoadingAnimated extends StatelessWidget {
   final double size;
-  final String color;
+  final Color color;
 
   const LoadingAnimated({Key key, this.size = 100, this.color})
       : super(key: key);
@@ -13,7 +13,7 @@ class LoadingAnimated extends StatelessWidget {
       child: SizedBox(
         height: size,
         width: size,
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(backgroundColor: color),
       ),
     );
   }

@@ -12,7 +12,7 @@ class DnbAddPostToSaved extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        final user = Get.find<UserController>().user;
+        final user = Get.find<UserController>().user.value;
         return AnimatedSwitcher(
           duration: Duration(milliseconds: 500),
           child: user.saved.contains(post.id)

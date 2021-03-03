@@ -10,13 +10,29 @@ class UploadController extends GetxController {
   File image;
 
   RxBool uploading = false.obs;
+  double progress;
+  File fileTmpToUpload;
 
-  void uploadVideoPost(String postId, File file) {
-    uploadTask = CloudStorage().uploadVideoWithId(postId, file);
+  void uploadVideoPost(String postId, File file) async {
+    uploadTask = null;
+    debugPrint("===> [Upload Controller] Copy To Tmp file");
+    fileTmpToUpload = await CloudStorage().copyFileToTmp(postId, file);
+    debugPrint("===> [Upload Controller] Name File  ${fileTmpToUpload.path}");
+    uploadTask = CloudStorage().uploadVideoWithId(postId, fileTmpToUpload);
+    debugPrint("===> [Upload Controller] uploadTask created");
     uploading.value = true;
+    uploadTask.asStream().listen((event) {
+      final progressTmp = event.bytesTransferred * 100 / event.totalBytes;
+      debugPrint("===> [Upload Controller] $progressTmp %");
 
+      if (progressTmp - progress > 10) {
+        uploadSnackBar("Upload Progress", "$progressTmp%");
+      }
+    });
     uploadTask.whenComplete(() {
+      debugPrint("===> [Upload Controller] whenComplete");
       uploadSnackBar("Congrat upload finish", "The video is available !");
+      CloudStorage().deleteFile(fileTmpToUpload);
     });
   }
 

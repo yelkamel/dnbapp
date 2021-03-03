@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:animated_background/animated_background.dart';
+import 'package:animated_background/particles.dart';
 import 'package:flutter/material.dart';
 
 class BulleBackground extends StatefulWidget {
@@ -7,8 +9,46 @@ class BulleBackground extends StatefulWidget {
   final Color color;
   final double maxSizeBubble;
   final int nbOfBubble;
+  const BulleBackground(
+      {Key key, this.child, this.color, this.maxSizeBubble, this.nbOfBubble})
+      : super(key: key);
 
-  const BulleBackground({
+  @override
+  _BulleBackgroundState createState() => _BulleBackgroundState();
+}
+
+class _BulleBackgroundState extends State<BulleBackground>
+    with SingleTickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBackground(
+      behaviour: RandomParticleBehaviour(
+        options: ParticleOptions(
+          baseColor: Theme.of(context).accentColor,
+          spawnOpacity: 0.0,
+          opacityChangeRate: 0.25,
+          minOpacity: 0.3,
+          maxOpacity: 0.8,
+          spawnMinSpeed: 60.0,
+          spawnMaxSpeed: 90.0,
+          spawnMinRadius: widget.maxSizeBubble / 2,
+          spawnMaxRadius: widget.maxSizeBubble,
+          particleCount: widget.nbOfBubble,
+        ),
+      ),
+      vsync: this,
+      child: widget.child,
+    );
+  }
+}
+
+class BulleBackgroundTT extends StatefulWidget {
+  final Widget child;
+  final Color color;
+  final double maxSizeBubble;
+  final int nbOfBubble;
+
+  const BulleBackgroundTT({
     Key key,
     @required this.child,
     this.color,
@@ -17,11 +57,11 @@ class BulleBackground extends StatefulWidget {
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return _BulleBackgroundState();
+    return _BulleBackgroundTTState();
   }
 }
 
-class _BulleBackgroundState extends State<BulleBackground>
+class _BulleBackgroundTTState extends State<BulleBackgroundTT>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   List<Bubble> bubbles;
@@ -71,7 +111,9 @@ class _BulleBackgroundState extends State<BulleBackground>
   }
 
   void updateBubblePosition() {
-    bubbles.forEach((it) => it.updatePosition());
+    bubbles.forEach((it) {
+      if (it != null) it.updatePosition();
+    });
     setState(() {});
   }
 }

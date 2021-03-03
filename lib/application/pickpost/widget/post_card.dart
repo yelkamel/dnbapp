@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
-import '../random_post_state.dart';
+import '../pickpost_state.dart';
 
 class PostCard extends HookWidget {
   final PostModel post;
@@ -17,7 +17,7 @@ class PostCard extends HookWidget {
   Widget build(BuildContext context) {
     final open = useState(false);
     return Obx(() {
-      final state = Get.find<RandomPostState>();
+      final state = Get.find<PickPostState>();
       final index = state.postsToShow.indexWhere((p) => p.id == post.id);
 
       return SizedBox(

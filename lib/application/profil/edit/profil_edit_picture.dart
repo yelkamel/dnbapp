@@ -11,7 +11,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfilEditPicture extends StatefulWidget {
-  const ProfilEditPicture({Key key}) : super(key: key);
+  final double size;
+  const ProfilEditPicture({Key key, this.size = 70}) : super(key: key);
 
   @override
   _ProfilEditPictureState createState() => _ProfilEditPictureState();
@@ -30,7 +31,7 @@ class _ProfilEditPictureState extends State<ProfilEditPicture> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-        _uploadTask = CloudStorage().uploadPictureFor(user.id, _image);
+        _uploadTask = CloudStorage().uploadPictureFor(user.value.id, _image);
       } else {
         print('No image selected.');
       }
@@ -47,18 +48,20 @@ class _ProfilEditPictureState extends State<ProfilEditPicture> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Stack(
-        children: [
-          DnbUserPicture(uid: Get.find<UserController>().uid, size: 60),
-          Positioned(
-            right: -10,
-            top: -10,
-            child: DnbIcon(onPressed: getImage, icon: Icons.edit, size: 20),
-          ),
-        ],
-      ),
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: DnbUserPicture(
+              uid: Get.find<UserController>().uid, size: widget.size),
+        ),
+        Positioned(
+          right: -widget.size * 0.25,
+          top: -widget.size * 0.25,
+          child: DnbIcon(
+              onPressed: getImage, icon: Icons.edit, size: widget.size * 0.25),
+        ),
+      ],
     );
   }
 }

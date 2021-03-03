@@ -2,6 +2,7 @@ import 'package:animated_drawer/views/animated_drawer.dart';
 import 'package:dnbapp/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerMenu extends StatelessWidget {
   final Widget child;
@@ -9,6 +10,15 @@ class DrawerMenu extends StatelessWidget {
     Key key,
     this.child,
   }) : super(key: key);
+
+  _launchURL() async {
+    const url = 'https://dndb-app.nolt.io/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +46,7 @@ class DrawerMenu extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     RaisedButton(
-                      onPressed: () {},
+                      onPressed: _launchURL,
                       child: Text(
                         "Idea",
                         style: Theme.of(context).textTheme.headline5,

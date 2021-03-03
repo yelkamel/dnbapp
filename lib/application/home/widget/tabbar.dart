@@ -10,10 +10,10 @@ class BottomTabBar extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassContainer(
-      blur: 20,
-      margin: EdgeInsets.only(left: 30, right: 30, bottom: 10),
-      child: SafeArea(
+    return SafeArea(
+      child: GlassContainer(
+        blur: 20,
+        margin: EdgeInsets.only(left: 100, right: 100, bottom: 10),
         child: TabBar(
           physics: NeverScrollableScrollPhysics(),
           controller: controller,
@@ -31,15 +31,8 @@ class BottomTabBar extends HookWidget {
             ],
           ),
           tabs: [
-            Tab(
-              child: Icon(Icons.person),
-            ),
-            Tab(
-              child: Icon(Icons.map),
-            ),
-            Tab(
-              child: Icon(Icons.topic),
-            ),
+            Tab(child: Icon(Icons.people)),
+            Tab(child: Icon(Icons.pages)),
           ],
         ),
       ),

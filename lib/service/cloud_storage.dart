@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 
 class CloudStorage {
   final service = FirebaseStorage.instance;
@@ -24,10 +25,24 @@ class CloudStorage {
     return "https://layouceferie.s3.eu-west-2.amazonaws.com/dnbapp/$radioId.mp3";
   }
 
+  Future<File> copyFileToTmp(String id, File file) async {
+    Directory tempDir = await getTemporaryDirectory();
+    String tempPath = "${tempDir.path}/${id}";
+    return file.copy(tempPath);
+  }
+
+  void deleteFile(File file) {
+    try {
+      file.delete();
+    } catch (e) {
+      Get.snackbar("Oups", "error deleteFile");
+      return null;
+    }
+  }
+
   UploadTask uploadVideoWithId(String id, File file) {
     try {
       debugPrint("===> [Upload] upload video to postvideo/$id");
-      file.rename(id);
       Reference ref = service.ref().child('postvideo/$id');
       return ref.putFile(file);
     } catch (e) {
