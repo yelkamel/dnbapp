@@ -13,8 +13,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
     email: json['email'] as String,
     badgeId: json['badgeId'] as String,
     createdDate: dateTimefromJson(json['createdDate'] as Timestamp),
-    saved: (json['saved'] as List)?.map((e) => e as String)?.toList(),
-    posts: (json['posts'] as List)?.map((e) => e as String)?.toList(),
+    saved: (json['saved'] as List).map((e) => e as String).toList(),
+    posts: (json['posts'] as List).map((e) => e as String).toList(),
     type: json['type'] as String,
     status: json['status'] as String,
   );
